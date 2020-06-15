@@ -6,7 +6,7 @@ from pytreemap.abstract.abstract_collection import AbstractCollection
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.3'
 __status__ = 'Alpha'
 
 
@@ -17,7 +17,7 @@ class Values(AbstractCollection):
         self.tm = tree_map
 
     def iterator(self):
-        return self.tm.ValueIterator(self.tm.get_first_entry())
+        return self.tm.ValueIterator(self.tm.get_first_entry(), self.tm)
 
     __iter__ = iterator
 
@@ -42,13 +42,3 @@ class Values(AbstractCollection):
 
     def clear(self):
         self.tm.clear()
-
-    def equals(self, o):
-        raise NotImplementedError
-
-    __eq__ = equals
-
-    def hash_code(self):
-        raise NotImplementedError
-
-    __hash__ = hash_code

@@ -6,9 +6,9 @@ with open("README.md", "r") as fh:
 setuptools.setup(
   name='pytreemap',
   packages=setuptools.find_packages(),
-  version='0.2',
+  version='0.3',
   license='gpl-2.0',
-  description='High-performance Python Implementation of the Java TreeMap API',
+  description='Python Implementation of Java TreeMap/TreeSet',
   author_email='gavinsweden@gmail.com',
   url='https://github.com/GavinPHR/pytreemap',
   keywords=['python3', 'self-balancing', 'binary-search-tree', 'red-black-tree', 'java', 'treemap', 'treeset'],
@@ -16,7 +16,7 @@ setuptools.setup(
       ],
   classifiers=[
     'Programming Language :: Python :: 3',
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'Topic :: Software Development :: Libraries :: Python Modules',
     'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',

@@ -7,7 +7,7 @@ from pytreemap.abstract.navigable_set import NavigableSet
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.3'
 __status__ = 'Alpha'
 
 
@@ -60,10 +60,10 @@ class KeySet(NavigableSet, AbstractSet):
                                      from_inclusive, to_inclusive))
 
     def head_set(self, to_element, inclusive=False):
-        return KeySet(self.m.head_set(to_element, inclusive))
+        return KeySet(self.m.head_map(to_element, inclusive))
 
     def tail_set(self, from_element, inclusive=True):
-        return KeySet(self.m.tail_set(from_element, inclusive))
+        return KeySet(self.m.tail_map(from_element, inclusive))
 
     def descending_set(self):
         return KeySet(self.m.descending_map())

@@ -7,7 +7,7 @@ import pytreemap as ptm
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.3'
 __status__ = 'Alpha'
 
 
@@ -26,23 +26,23 @@ class AscendingSubMap(NavigableSubMap):
     def sub_map(self, from_key, to_key,
                 from_inclusive=True, to_inclusive=False):
         if not self.in_range(from_key, from_inclusive):
-            raise ValueError('from_key out of range')
+            raise KeyError('from_key out of range')
         if not self.in_range(to_key, to_inclusive):
-            raise ValueError('to_key out of range')
+            raise KeyError('to_key out of range')
         return AscendingSubMap(self.m,
                                False, from_key, from_inclusive,
                                False, to_key, to_inclusive)
 
     def head_map(self, to_key, inclusive=False):
         if not self.in_range(to_key, inclusive):
-            raise ValueError('to_key out of range')
+            raise KeyError('to_key out of range')
         return AscendingSubMap(self.m,
                                self.from_start, self.lo, self.lo_inclusive,
                                False, to_key, inclusive)
 
     def tail_map(self, from_key, inclusive=True):
         if not self.in_range(from_key, inclusive):
-            raise ValueError('from_key out of range')
+            raise KeyError('from_key out of range')
         return AscendingSubMap(self.m,
                                False, from_key, inclusive,
                                self.to_end, self.hi, self.hi_inclusive)

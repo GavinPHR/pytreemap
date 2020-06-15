@@ -2,11 +2,12 @@
 """A Python implementation of the Java Map interface.
 """
 from abc import ABC, abstractmethod
+from pytreemap.exception import IllegalStateError, ConcurrentModificationError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.3'
 __status__ = 'Alpha'
 
 
@@ -107,3 +108,95 @@ class Map(ABC):
         raise NotImplementedError
 
     __hash__ = hash_code
+
+    def get_or_default(self, key, default_value):
+        v = self.get(key)
+        if v is not None or self.contains_key(key):
+            return v
+        else:
+            return default_value
+
+    def for_each(self, action):
+        if action is None:
+            raise TypeError
+        for entry in self.entry_set():
+            try:
+                k = entry.get_key()
+                v = entry.get_value()
+            except IllegalStateError:
+                raise ConcurrentModificationError
+            action(k, v)
+
+    def replace_all(self, function):
+        if function is None:
+            raise TypeError
+        for entry in self.entry_set():
+            try:
+                k = entry.get_key()
+                v = entry.get_value()
+            except IllegalStateError:
+                raise ConcurrentModificationError
+            v = function(k, v)
+            try:
+                entry.set_value(v)
+            except IllegalStateError:
+                raise ConcurrentModificationError
+
+    def put_if_absent(self, key, value):
+        v = self.get(key)
+        if v is None:
+            v = self.put(key, value)
+        return v
+
+    def replace(self, key, value1, value2=None):
+        cur_value = self.get(key)
+        if value2 is None:
+            if cur_value is not None or self.contains_key(key):
+                cur_value = self.put(key, value1)
+            return cur_value
+        if (cur_value != value1 or
+                (cur_value is None and not self.contains_key(key))):
+            return False
+        self.put(key, value2)
+        return True
+
+    def compute_if_absent(self, key, mapping_function):
+        if mapping_function is None:
+            raise TypeError
+        v = self.get(key)
+        if v is None:
+            new_value = mapping_function(key)
+            if new_value is not None:
+                self.put(key, new_value)
+                return new_value
+        return v
+
+    def compute_if_present(self, key, remapping_function):
+        if remapping_function is None:
+            raise TypeError
+        old_value = self.get(key)
+        if old_value is not None:
+            new_value = remapping_function(key, old_value)
+            if new_value is not None:
+                self.put(key, new_value)
+                return new_value
+            else:
+                self.remove(key)
+                return None
+        else:
+            return None
+
+    def compute(self, key, remapping_function):
+        if remapping_function is None:
+            raise TypeError
+        old_value = self.get(key)
+        new_value = remapping_function(key, old_value)
+        if new_value is None:
+            if old_value is not None or self.contains_key(key):
+                self.remove(key)
+                return None
+            else:
+                return None
+        else:
+            self.put(key, new_value)
+            return new_value

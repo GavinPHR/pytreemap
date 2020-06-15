@@ -7,7 +7,7 @@ from .sorted_set import SortedSet
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.3'
 __status__ = 'Alpha'
 
 
@@ -51,8 +51,7 @@ class NavigableSet(SortedSet):
     def descending_iterator(self):
         raise NotImplementedError
 
-    def __reversed__(self):
-        return self.descending_iterator()
+    __reversed__ = descending_iterator
 
     @abstractmethod
     def sub_set(self, from_element, to_element,

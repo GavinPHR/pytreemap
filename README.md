@@ -1,18 +1,22 @@
-# pytreemap
-A Python implementation of the Java TreeMap.
+# pytreemap [![Build Status](https://travis-ci.com/GavinPHR/pytreemap.svg?branch=master)](https://travis-ci.com/GavinPHR/pytreemap) [![codecov](https://codecov.io/gh/GavinPHR/pytreemap/branch/master/graph/badge.svg)](https://codecov.io/gh/GavinPHR/pytreemap) ![](https://img.shields.io/pypi/v/pytreemap) ![](https://img.shields.io/badge/python-%3E%3D3.5-blue) ![](https://img.shields.io/github/license/GavinPHR/pytreemap)
+Python implementation of the Java TreeMap/Tree.
 
-## Alpha release now available on PyPI
+## Beta release now available on PyPI
 
 Install with pip:
 
 ```bash
-pip3 install pytreemap
+pip install pytreemap
 ```
 
-Documentation is work-in-progress.
-You can use Java 7's doc as a reference for now.
-All the method names are lower_case_separated_by_underscore instead of mixedCase, e.g.
-`containsKey()` in Java is `contains_key()` in this package.
+### Documentation
+A basic documentation is now available at:
 
-Testing is work-in-progress as well. Proceed with care.
+https://gavinphr.github.io/pytreemap/
 
+Detailed documentation WIP.
+
+### Testing and Benchmarks
+Tests have been carried out extensively. Check out the test/ directory.
+
+Benchmarks/profiling WIP.

@@ -13,23 +13,23 @@ from pytreemap.exception import ConcurrentModificationError, IllegalStateError
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.3'
 __status__ = 'Alpha'
 
 
-class NavigableSubMap(NavigableMap, AbstractMap):
+class NavigableSubMap(AbstractMap, NavigableMap):
 
     def __init__(self, m,
                  from_start, lo, lo_inclusive,
                  to_end, hi, hi_inclusive):
         if not from_start and not to_end:
             if m.compare(lo, hi) > 0:
-                raise ValueError('from_key > to_key')
-            else:
-                if not from_start:
-                    m.compare(lo, lo)
-                if not to_end:
-                    m.compare(hi, hi)
+                raise KeyError('from_key > to_key')
+        else:
+            if not from_start:
+                m.compare(lo, lo)
+            if not to_end:
+                m.compare(hi, hi)
         self.m = m
         self.lo, self.hi = lo, hi
         self.from_start, self.to_end = from_start, to_end
@@ -60,7 +60,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
 
     def in_closed_range(self, key):
         return ((self.from_start or self.m.compare(key, self.lo) >= 0) and
-                (self.to_end or self.m.comapre(self.hi, key) >= 0))
+                (self.to_end or self.m.compare(self.hi, key) >= 0))
 
     def abs_lowest(self):
         e = (self.m.get_first_entry() if self.from_start else
@@ -163,7 +163,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
 
     def put(self, key, value):
         if not self.in_range(key):
-            raise ValueError('key out of range')
+            raise KeyError('key out of range')
         return self.m.put(key, value)
 
     __setitem__ = put
@@ -171,12 +171,18 @@ class NavigableSubMap(NavigableMap, AbstractMap):
     def get(self, key):
         return None if not self.in_range(key) else self.m.get(key)
 
-    __getitem__ = get
+    def __getitem__(self, key):
+        if not self.in_range(key):
+            raise KeyError('key out of range')
+        return self.m.__getitem__(key)
 
     def remove(self, key):
         return None if not self.in_range(key) else self.m.remove(key)
 
-    __delitem__ = remove
+    def __delitem__(self, key):
+        if not self.in_range(key):
+            raise KeyError('key out of range')
+        return self.m.__delitem__(key)
 
     def ceiling_entry(self, key):
         return ptm.TreeMap.export_entry(self.sub_ceiling(key))
@@ -242,20 +248,20 @@ class NavigableSubMap(NavigableMap, AbstractMap):
 
         def __init__(self, outer):
             self.outer = outer
-            self.size = -1
+            self._size = -1
             self.size_mod_count = 0
 
         def size(self):
             if self.outer.from_start and self.outer.to_end:
                 return self.outer.m.size()
-            if (self.size == -1 or
-                    self.size_mod_count != self.outer.m.mod_count):
-                self.size_mod_count = self.outer.m.mod_count
-                self.size = 0
+            if (self._size == -1 or
+                    self.size_mod_count != self.outer.m._mod_count):
+                self.size_mod_count = self.outer.m._mod_count
+                self._size = 0
                 i = iter(self)
                 for _ in i:
-                    self.size += 1
-            return self.size
+                    self._size += 1
+            return self._size
 
         __len__ = size
 
@@ -286,7 +292,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
             node = self.outer.m.get_entry(key)
             if (node is not None and
                     ptm.TreeMap.val_equals(node.get_value(),
-                                          entry.get_value())):
+                                           entry.get_value())):
                 self.outer.m.delete_entry(node)
                 return True
             return False
@@ -295,55 +301,55 @@ class NavigableSubMap(NavigableMap, AbstractMap):
 
         def __init__(self, first, fence, outer):
             self.outer = outer
-            self.expected_mod_count = outer.m.mod_count
+            self.expected_mod_count = outer.m._mod_count
             self.last_returned = None
-            self.next = first
+            self.next_ = first
             self.fence_key = object() if fence is None else fence.key
 
         def has_next(self):
-            return (self.next is not None and
-                    self.next.key is not self.fence_key)
+            return (self.next_ is not None and
+                    self.next_.key is not self.fence_key)
 
         def next_entry(self):
-            e = self.next
+            e = self.next_
             if e is None or e.key is self.fence_key:
                 raise StopIteration
-            if self.outer.m.mod_count != self.expected_mod_count:
+            if self.outer.m._mod_count != self.expected_mod_count:
                 raise ConcurrentModificationError
-            self.next = ptm.TreeMap.successor(e)
+            self.next_ = ptm.TreeMap.successor(e)
             self.last_returned = e
             return e
 
         def prev_entry(self):
-            e = self.next
+            e = self.next_
             if e is None or e.key is self.fence_key:
                 raise StopIteration
-            if self.outer.m.mod_count != self.expected_mod_count:
+            if self.outer.m._mod_count != self.expected_mod_count:
                 raise ConcurrentModificationError
-            self.next = ptm.TreeMap.predecessor(e)
+            self.next_ = ptm.TreeMap.predecessor(e)
             self.last_returned = e
             return e
 
         def remove_ascending(self):
             if self.last_returned is None:
                 raise IllegalStateError
-            if self.outer.m.mod_count != self.expected_mod_count:
+            if self.outer.m._mod_count != self.expected_mod_count:
                 raise ConcurrentModificationError
             if (self.last_returned.left is not None and
                     self.last_returned.right is not None):
-                self.next = self.last_returned
+                self.next_ = self.last_returned
             self.outer.m.delete_entry(self.last_returned)
             self.last_returned = None
-            self.expected_mod_count = self.outer.m.mod_count
+            self.expected_mod_count = self.outer.m._mod_count
 
         def remove_descending(self):
             if self.last_returned is None:
                 raise IllegalStateError
-            if self.outer.m.mod_count != self.expected_mod_count:
+            if self.outer.m._mod_count != self.expected_mod_count:
                 raise ConcurrentModificationError
             self.outer.m.delete_entry(self.last_returned)
             self.last_returned = None
-            self.expected_mod_count = self.outer.m.mod_count
+            self.expected_mod_count = self.outer.m._mod_count
 
     class SubMapEntryIterator(SubMapIterator):
 
