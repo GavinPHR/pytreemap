@@ -2,7 +2,7 @@
 """TreeMap inner class.
 """
 from .navigable_sub_map import NavigableSubMap
-import pytreemap.tree_map_inner_class.descending_sub_map as dsm
+import pytreemap as ptm
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
@@ -50,7 +50,7 @@ class AscendingSubMap(NavigableSubMap):
     def descending_map(self):
         if self.descending_map_view is None:
             self.descending_map_view = \
-                dsm.DescendingSubMap(self.m,
+                ptm.DescendingSubMap(self.m,
                                      self.from_start, self.lo, self.lo_inclusive,
                                      self.to_end, self.hi, self.hi_inclusive)
         return self.descending_map_view

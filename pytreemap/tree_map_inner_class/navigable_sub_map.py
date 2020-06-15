@@ -3,7 +3,7 @@
 """
 from abc import abstractmethod
 from collections.abc import Iterator
-import pytreemap.tree_map as tm
+import pytreemap as ptm
 from pytreemap.abstract.map import Map
 from pytreemap.abstract.navigable_map import NavigableMap
 from pytreemap.abstract.abstract_map import AbstractMap
@@ -179,58 +179,58 @@ class NavigableSubMap(NavigableMap, AbstractMap):
     __delitem__ = remove
 
     def ceiling_entry(self, key):
-        return tm.TreeMap.export_entry(self.sub_ceiling(key))
+        return ptm.TreeMap.export_entry(self.sub_ceiling(key))
 
     def ceiling_key(self, key):
-        return tm.TreeMap.key_or_none(self.sub_ceiling(key))
+        return ptm.TreeMap.key_or_none(self.sub_ceiling(key))
 
     def higher_entry(self, key):
-        return tm.TreeMap.export_entry(self.sub_higher(key))
+        return ptm.TreeMap.export_entry(self.sub_higher(key))
 
     def higher_key(self, key):
-        return tm.TreeMap.key_or_none(self.sub_higher(key))
+        return ptm.TreeMap.key_or_none(self.sub_higher(key))
 
     def floor_entry(self, key):
-        return tm.TreeMap.export_entry(self.sub_floor(key))
+        return ptm.TreeMap.export_entry(self.sub_floor(key))
 
     def floor_key(self, key):
-        return tm.TreeMap.key_or_none(self.sub_floor(key))
+        return ptm.TreeMap.key_or_none(self.sub_floor(key))
 
     def lower_entry(self, key):
-        return tm.TreeMap.export_entry(self.sub_lower(key))
+        return ptm.TreeMap.export_entry(self.sub_lower(key))
 
     def lower_key(self, key):
-        return tm.TreeMap.key_or_none(self.sub_lower(key))
+        return ptm.TreeMap.key_or_none(self.sub_lower(key))
 
     def first_key(self):
-        return tm.TreeMap.key(self.sub_lowest())
+        return ptm.TreeMap.key(self.sub_lowest())
 
     def last_key(self):
-        return tm.TreeMap.key(self.sub_highest())
+        return ptm.TreeMap.key(self.sub_highest())
 
     def first_entry(self):
-        return tm.TreeMap.export_entry(self.sub_lowest())
+        return ptm.TreeMap.export_entry(self.sub_lowest())
 
     def last_entry(self):
-        return tm.TreeMap.export_entry(self.sub_highest())
+        return ptm.TreeMap.export_entry(self.sub_highest())
 
     def poll_first_entry(self):
         e = self.sub_lowest()
-        result = tm.TreeMap.export_entry(e)
+        result = ptm.TreeMap.export_entry(e)
         if e is not None:
             self.m.delete_entry(e)
         return result
 
     def poll_last_entry(self):
         e = self.sub_highest()
-        result = tm.TreeMap.export_entry(e)
+        result = ptm.TreeMap.export_entry(e)
         if e is not None:
             self.m.delete_entry(e)
         return result
 
     def navigable_key_set(self):
         nksv = self.navigable_key_set_view
-        return nksv if nksv is not None else tm.TreeMap.KeySet(self)
+        return nksv if nksv is not None else ptm.TreeMap.KeySet(self)
 
     def key_set(self):
         return self.navigable_key_set()
@@ -272,7 +272,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
                 return False
             node = self.outer.m.get_entry(key)
             return (node is not None and
-                    tm.TreeMap.val_equals(node.get_value(), entry.get_value()))
+                    ptm.TreeMap.val_equals(node.get_value(), entry.get_value()))
 
         __contains__ = contains
 
@@ -285,7 +285,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
                 return False
             node = self.outer.m.get_entry(key)
             if (node is not None and
-                    tm.TreeMap.val_equals(node.get_value(),
+                    ptm.TreeMap.val_equals(node.get_value(),
                                           entry.get_value())):
                 self.outer.m.delete_entry(node)
                 return True
@@ -310,7 +310,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
                 raise StopIteration
             if self.outer.m.mod_count != self.expected_mod_count:
                 raise ConcurrentModificationError
-            self.next = tm.TreeMap.successor(e)
+            self.next = ptm.TreeMap.successor(e)
             self.last_returned = e
             return e
 
@@ -320,7 +320,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
                 raise StopIteration
             if self.outer.m.mod_count != self.expected_mod_count:
                 raise ConcurrentModificationError
-            self.next = tm.TreeMap.predecessor(e)
+            self.next = ptm.TreeMap.predecessor(e)
             self.last_returned = e
             return e
 

@@ -2,7 +2,7 @@
 """TreeMap inner class.
 """
 from pytreemap.abstract.map import Map
-import pytreemap.tree_map as tm
+import pytreemap as tm
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
