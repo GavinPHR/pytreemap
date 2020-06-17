@@ -3,18 +3,54 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pytreemap's documentation!
-=====================================
+pytreemap
+=========
+|build| |codecov| |pypi_version| |python_version| |license|
+
+.. |build| image:: https://travis-ci.com/GavinPHR/pytreemap.svg?branch=master
+.. |codecov| image:: https://codecov.io/gh/GavinPHR/pytreemap/branch/master/graph/badge.svg
+.. |pypi_version| image:: https://img.shields.io/pypi/v/pytreemap
+.. |python_version| image:: https://img.shields.io/badge/python-%3E%3D3.5-blue
+.. |license| image:: https://img.shields.io/github/license/GavinPHR/pytreemap
+
+.. module:: pytreemap
+
+:py:mod:`pytreemap` is a Python implementation of Java TreeMap/TreeSet.
+Most of the TreeMap/TreeSet APIs are implemented with some exceptions.
+Please go to the :doc:`tree_map` section or :doc:`tree_set` section for
+the full list of implemented APIs.
+
+.. DANGER::
+   TreeSet APIs are not yet implemented.
+
+.. NOTE::
+   :doc:`tree_set` is essentially :doc:`tree_map` with dummy values.
+
+The underlying data structure is the Red-Black tree and
+offers :math:`O(\text{log} n)` time complexity for
+search (:meth:`get`), insert (:meth:`put`), delete (:meth:`remove`),
+and many other operations.
+
+Source code is available on `GitHub <https://github.com/GavinPHR/pytreemap>`_.
+
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   ./installation
+   ./tree_map
+   ./tree_set
+   ./benchmarks
+   ./implementation
+   ./license
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. Indices and tables
+.. ==================
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`

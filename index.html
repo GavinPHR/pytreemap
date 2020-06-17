@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to pytreemap’s documentation! &mdash; pytreemap  documentation</title>
+  <title>pytreemap &mdash; pytreemap  documentation</title>
   
 
   
@@ -30,12 +30,14 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,12 +82,16 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to pytreemap’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Implementation Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
-</div>
+
             
           
         </div>
@@ -130,7 +136,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Welcome to pytreemap’s documentation!</li>
+      <li>pytreemap</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -149,18 +155,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-pytreemap-s-documentation">
-<h1>Welcome to pytreemap’s documentation!<a class="headerlink" href="#welcome-to-pytreemap-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pytreemap">
+<h1>pytreemap<a class="headerlink" href="#pytreemap" title="Permalink to this headline">¶</a></h1>
+<p><img alt="build" src="https://travis-ci.com/GavinPHR/pytreemap.svg?branch=master" /> <img alt="codecov" src="https://codecov.io/gh/GavinPHR/pytreemap/branch/master/graph/badge.svg" /> <img alt="pypi_version" src="https://img.shields.io/pypi/v/pytreemap" /> <img alt="python_version" src="https://img.shields.io/badge/python-%3E%3D3.5-blue" /> <img alt="license" src="https://img.shields.io/github/license/GavinPHR/pytreemap" /></p>
+<span class="target" id="module-pytreemap"></span><p><a class="reference internal" href="#module-pytreemap" title="pytreemap"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pytreemap</span></code></a> is a Python implementation of Java TreeMap/TreeSet.
+Most of the TreeMap/TreeSet APIs are implemented with some exceptions.
+Please go to the <a class="reference internal" href="tree_map.html"><span class="doc">TreeMap</span></a> section or <a class="reference internal" href="tree_set.html"><span class="doc">TreeSet</span></a> section for
+the full list of implemented APIs.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>TreeSet APIs are not yet implemented.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="tree_set.html"><span class="doc">TreeSet</span></a> is essentially <a class="reference internal" href="tree_map.html"><span class="doc">TreeMap</span></a> with dummy values.</p>
+</div>
+<p>The underlying data structure is the Red-Black tree and
+offers <span class="math notranslate nohighlight">\(O(\text{log} n)\)</span> time complexity for
+search (<a class="reference internal" href="tree_map.html#get" title="get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a>), insert (<a class="reference internal" href="tree_map.html#put" title="put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">put()</span></code></a>), delete (<a class="reference internal" href="tree_map.html#remove" title="remove"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove()</span></code></a>),
+and many other operations.</p>
+<p>Source code is available on <a class="reference external" href="https://github.com/GavinPHR/pytreemap">GitHub</a>.</p>
 <div class="toctree-wrapper compound">
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Implementation Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
+</div>
 </div>
 
 
@@ -168,6 +193,13 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
   
 
   <hr/>

@@ -1,0 +1,8 @@
+TreeMap
+=======
+
+.. method:: get(key)
+
+.. method:: put(key, value)
+
+.. method:: remove(key)
