@@ -31,9 +31,20 @@ offers :math:`O(\text{log} n)` time complexity for
 search (:meth:`get`), insert (:meth:`put`), delete (:meth:`remove`),
 and many other operations.
 
+Same as Java TreeMap/TreeSet, this implementation is **NOT**
+synchronized, you **MUST** do synchronization yourself in
+multi-threaded applications.
+
+The iterators returned by the TreeMap/TreeSet are *fail-fast*, meaning that
+an exception is thrown **as soon as** a structural change to the TreeMap/TreeSet
+is discovered.
+
+.. NOTE::
+   You should not rely on the *fail-fast* behaviour while testing
+   your programs correctness. There is no guarantee that structural
+   changes to the TreeMap/TreeSet are always caught.
+
 Source code is available on `GitHub <https://github.com/GavinPHR/pytreemap>`_.
-
-
 
 .. toctree::
    :maxdepth: 2
@@ -42,11 +53,9 @@ Source code is available on `GitHub <https://github.com/GavinPHR/pytreemap>`_.
    ./installation
    ./tree_map
    ./tree_set
+   ./exceptions
    ./benchmarks
-   ./implementation
    ./license
-
-
 
 .. Indices and tables
 .. ==================

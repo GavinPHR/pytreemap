@@ -16,6 +16,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+  
   
   
 
@@ -87,8 +89,8 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Implementation Details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -172,8 +174,20 @@ the full list of implemented APIs.</p>
 </div>
 <p>The underlying data structure is the Red-Black tree and
 offers <span class="math notranslate nohighlight">\(O(\text{log} n)\)</span> time complexity for
-search (<a class="reference internal" href="tree_map.html#get" title="get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a>), insert (<a class="reference internal" href="tree_map.html#put" title="put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">put()</span></code></a>), delete (<a class="reference internal" href="tree_map.html#remove" title="remove"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove()</span></code></a>),
+search (<code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code>), insert (<code class="xref py py-meth docutils literal notranslate"><span class="pre">put()</span></code>), delete (<code class="xref py py-meth docutils literal notranslate"><span class="pre">remove()</span></code>),
 and many other operations.</p>
+<p>Same as Java TreeMap/TreeSet, this implementation is <strong>NOT</strong>
+synchronized, you <strong>MUST</strong> do synchronization yourself in
+multi-threaded applications.</p>
+<p>The iterators returned by the TreeMap/TreeSet are <em>fail-fast</em>, meaning that
+an exception is thrown <strong>as soon as</strong> a structural change to the TreeMap/TreeSet
+is discovered.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should not rely on the <em>fail-fast</em> behaviour while testing
+your programs correctness. There is no guarantee that structural
+changes to the TreeMap/TreeSet are always caught.</p>
+</div>
 <p>Source code is available on <a class="reference external" href="https://github.com/GavinPHR/pytreemap">GitHub</a>.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
@@ -181,8 +195,8 @@ and many other operations.</p>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Implementation Details</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 </div>
