@@ -3,12 +3,11 @@
 """
 from abc import abstractmethod
 from .map import Map
-from pytreemap.exception import UnsupportedOperationError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.3'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 class AbstractMap(Map):
@@ -66,7 +65,7 @@ class AbstractMap(Map):
     __getitem__ = get
 
     def put(self, key, value):
-        raise UnsupportedOperationError
+        raise NotImplementedError
 
     __setitem__ = put
 
@@ -328,7 +327,7 @@ class AbstractMap(Map):
             return self.value
 
         def set_value(self, value):
-            raise UnsupportedOperationError
+            raise NotImplementedError
 
         def equals(self, o):
             if not isinstance(o, Map.Entry):

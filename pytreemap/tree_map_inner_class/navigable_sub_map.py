@@ -8,12 +8,11 @@ from pytreemap.abstract.map import Map
 from pytreemap.abstract.navigable_map import NavigableMap
 from pytreemap.abstract.abstract_map import AbstractMap
 from pytreemap.abstract.abstract_set import AbstractSet
-from pytreemap.exception import ConcurrentModificationError, IllegalStateError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.3'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -315,7 +314,7 @@ class NavigableSubMap(AbstractMap, NavigableMap):
             if e is None or e.key is self.fence_key:
                 raise StopIteration
             if self.outer.m._mod_count != self.expected_mod_count:
-                raise ConcurrentModificationError
+                raise RuntimeError
             self.next_ = ptm.TreeMap.successor(e)
             self.last_returned = e
             return e
@@ -325,16 +324,16 @@ class NavigableSubMap(AbstractMap, NavigableMap):
             if e is None or e.key is self.fence_key:
                 raise StopIteration
             if self.outer.m._mod_count != self.expected_mod_count:
-                raise ConcurrentModificationError
+                raise RuntimeError
             self.next_ = ptm.TreeMap.predecessor(e)
             self.last_returned = e
             return e
 
         def remove_ascending(self):
             if self.last_returned is None:
-                raise IllegalStateError
+                raise RuntimeError
             if self.outer.m._mod_count != self.expected_mod_count:
-                raise ConcurrentModificationError
+                raise RuntimeError
             if (self.last_returned.left is not None and
                     self.last_returned.right is not None):
                 self.next_ = self.last_returned
@@ -344,9 +343,9 @@ class NavigableSubMap(AbstractMap, NavigableMap):
 
         def remove_descending(self):
             if self.last_returned is None:
-                raise IllegalStateError
+                raise RuntimeError
             if self.outer.m._mod_count != self.expected_mod_count:
-                raise ConcurrentModificationError
+                raise RuntimeError
             self.outer.m.delete_entry(self.last_returned)
             self.last_returned = None
             self.expected_mod_count = self.outer.m._mod_count

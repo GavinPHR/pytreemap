@@ -3,6 +3,7 @@
 
 # Java Source Files
 java_source/
+*.class
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -13,6 +13,22 @@ pytreemap
 .. |python_version| image:: https://img.shields.io/badge/python-%3E%3D3.5-blue
 .. |license| image:: https://img.shields.io/github/license/GavinPHR/pytreemap
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   ./installation
+   ./demo
+   ./tree_map
+   ./tree_set
+   ./entry
+   ./entry_set
+   ./values
+   ./navigable_set
+   ./navigable_map
+   ./benchmarks
+   ./license
+
 .. module:: pytreemap
 
 :py:mod:`pytreemap` is a Python implementation of Java TreeMap/TreeSet.
@@ -20,16 +36,10 @@ Most of the TreeMap/TreeSet APIs are implemented with some exceptions.
 Please go to the :doc:`tree_map` section or :doc:`tree_set` section for
 the full list of implemented APIs.
 
-.. DANGER::
-   TreeSet APIs are not yet implemented.
-
-.. NOTE::
-   :doc:`tree_set` is essentially :doc:`tree_map` with dummy values.
-
 The underlying data structure is the Red-Black tree and
-offers :math:`O(\text{log} n)` time complexity for
-search (:meth:`get`), insert (:meth:`put`), delete (:meth:`remove`),
-and many other operations.
+offers :math:`O(\text{log}\ n)` time complexity for
+search (:meth:`get() <TreeMap.get>`), insert (:meth:`put() <TreeMap.put>`),
+delete (:meth:`remove() <TreeMap.remove>`), and many other operations.
 
 Same as Java TreeMap/TreeSet, this implementation is **NOT**
 synchronized, you **MUST** do synchronization yourself in
@@ -45,17 +55,6 @@ is discovered.
    changes to the TreeMap/TreeSet are always caught.
 
 Source code is available on `GitHub <https://github.com/GavinPHR/pytreemap>`_.
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   ./installation
-   ./tree_map
-   ./tree_set
-   ./exceptions
-   ./benchmarks
-   ./license
 
 .. Indices and tables
 .. ==================

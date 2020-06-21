@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import pytest
 from pytreemap.abstract.abstract_map import AbstractMap
-from pytreemap.exception import UnsupportedOperationError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
@@ -30,7 +29,7 @@ def test_entry(e):
         assert e.set_value(None) == v2
         assert e.get_value() is None
     else:
-        with pytest.raises(UnsupportedOperationError):
+        with pytest.raises(NotImplementedError):
             e.set_value(v2)
 
 
@@ -47,5 +46,5 @@ def test_none_entry(e):
         assert e.set_value(v) is None
         assert e.get_value() == v
     else:
-        with pytest.raises(UnsupportedOperationError):
+        with pytest.raises(NotImplementedError):
             e.set_value(None)

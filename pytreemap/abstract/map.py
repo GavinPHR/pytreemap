@@ -2,12 +2,11 @@
 """A Python implementation of the Java Map interface.
 """
 from abc import ABC, abstractmethod
-from pytreemap.exception import IllegalStateError, ConcurrentModificationError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.3'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -123,8 +122,8 @@ class Map(ABC):
             try:
                 k = entry.get_key()
                 v = entry.get_value()
-            except IllegalStateError:
-                raise ConcurrentModificationError
+            except RuntimeError:
+                raise RuntimeError
             action(k, v)
 
     def replace_all(self, function):
@@ -134,13 +133,13 @@ class Map(ABC):
             try:
                 k = entry.get_key()
                 v = entry.get_value()
-            except IllegalStateError:
-                raise ConcurrentModificationError
+            except RuntimeError:
+                raise RuntimeError
             v = function(k, v)
             try:
                 entry.set_value(v)
-            except IllegalStateError:
-                raise ConcurrentModificationError
+            except RuntimeError:
+                raise RuntimeError
 
     def put_if_absent(self, key, value):
         v = self.get(key)

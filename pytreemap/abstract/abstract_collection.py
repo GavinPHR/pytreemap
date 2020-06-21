@@ -3,12 +3,11 @@
 """
 from abc import abstractmethod
 from .collection import Collection
-from pytreemap.exception import UnsupportedOperationError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.3'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -47,7 +46,7 @@ class AbstractCollection(Collection):
         return [e for e in iter(self)]
 
     def add(self, e):
-        raise UnsupportedOperationError
+        raise NotImplementedError
 
     def remove(self, o):
         it = iter(self)

@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 """TreeMap inner class.
 """
-from pytreemap.exception import ConcurrentModificationError, IllegalStateError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.3'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -29,7 +28,7 @@ class PrivateEntryIterator:
         if e is None:
             raise StopIteration
         if self.tm._mod_count != self.expected_mod_count:
-            raise ConcurrentModificationError
+            raise RuntimeError
         self.next_ = self.tm.successor(e)
         self.last_returned = e
         return e
@@ -39,16 +38,16 @@ class PrivateEntryIterator:
         if e is None:
             raise StopIteration
         if self.tm._mod_count != self.expected_mod_count:
-            raise ConcurrentModificationError
+            raise RuntimeError
         self.next_ = self.tm.predecessor(e)
         self.last_returned = e
         return e
 
     def remove(self):
         if self.last_returned is None:
-            raise IllegalStateError
+            raise RuntimeError
         if self.tm._mod_count != self.expected_mod_count:
-            raise ConcurrentModificationError
+            raise RuntimeError
         if (self.last_returned.left is not None and
                 self.last_returned.right is not None):
             # Because the content of the last_returned node
