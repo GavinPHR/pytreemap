@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pytreemap &mdash; pytreemap  documentation</title>
+  <title>NavigableSet &mdash; pytreemap  documentation</title>
   
 
   
@@ -39,7 +39,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="installation.html" /> 
+    <link rel="next" title="NavigableMap" href="navigable_map.html" />
+    <link rel="prev" title="Collection" href="collection.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -53,7 +54,7 @@
           
 
           
-            <a href="#" class="icon icon-home" alt="Documentation Home"> pytreemap
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> pytreemap
           
 
           
@@ -85,7 +86,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="demo.html">Usage Demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
@@ -93,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="entry.html">Entry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="set.html">Set</a></li>
 <li class="toctree-l1"><a class="reference internal" href="collection.html">Collection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="navigable_set.html">NavigableSet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NavigableSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_map.html">NavigableMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -112,7 +113,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">pytreemap</a>
+          <a href="index.html">pytreemap</a>
         
       </nav>
 
@@ -141,15 +142,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>pytreemap</li>
+      <li>NavigableSet</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/navigable_set.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -162,46 +163,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pytreemap">
-<h1>pytreemap<a class="headerlink" href="#pytreemap" title="Permalink to this headline">¶</a></h1>
-<p><img alt="build" src="https://travis-ci.com/GavinPHR/pytreemap.svg?branch=master" /> <img alt="codecov" src="https://codecov.io/gh/GavinPHR/pytreemap/branch/master/graph/badge.svg" /> <img alt="pypi_version" src="https://img.shields.io/pypi/v/pytreemap" /> <img alt="python_version" src="https://img.shields.io/badge/python-%3E%3D3.5-blue" /> <img alt="license" src="https://img.shields.io/github/license/GavinPHR/pytreemap" /></p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demo.html">Usage Demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="entry.html">Entry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collection.html">Collection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="navigable_set.html">NavigableSet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="navigable_map.html">NavigableMap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-</ul>
-</div>
-<span class="target" id="module-pytreemap"></span><p><a class="reference internal" href="#module-pytreemap" title="pytreemap"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pytreemap</span></code></a> is a Python implementation of Java TreeMap/TreeSet.
-Most of the TreeMap/TreeSet APIs are implemented with some exceptions.
-Please go to the <a class="reference internal" href="tree_map.html"><span class="doc">TreeMap</span></a> section or <a class="reference internal" href="tree_set.html"><span class="doc">TreeSet</span></a> section for
-the full list of implemented APIs.</p>
-<p>The underlying data structure is the Red-Black tree and
-offers <span class="math notranslate nohighlight">\(O(\text{log}\ n)\)</span> time complexity for
-search (<a class="reference internal" href="tree_map.html#TreeMap.get" title="TreeMap.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a>), insert (<a class="reference internal" href="tree_map.html#TreeMap.put" title="TreeMap.put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">put()</span></code></a>),
-delete (<a class="reference internal" href="tree_map.html#TreeMap.remove" title="TreeMap.remove"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove()</span></code></a>), and many other operations.</p>
-<p>Same as Java TreeMap/TreeSet, this implementation is <strong>NOT</strong>
-synchronized, you <strong>MUST</strong> do synchronization yourself in
-multi-threaded applications.</p>
-<p>The iterators returned by the TreeMap/TreeSet are <em>fail-fast</em>, meaning that
-an exception is thrown <strong>as soon as</strong> a structural change to the TreeMap/TreeSet
-is discovered.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You should not rely on the <em>fail-fast</em> behaviour while testing
-your programs correctness. There is no guarantee that structural
-changes to the TreeMap/TreeSet are always caught.</p>
-</div>
-<p>Source code is available on <a class="reference external" href="https://github.com/GavinPHR/pytreemap">GitHub</a>.</p>
+  <div class="section" id="navigableset">
+<h1>NavigableSet<a class="headerlink" href="#navigableset" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -212,8 +175,10 @@ changes to the TreeMap/TreeSet are always caught.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="navigable_map.html" class="btn btn-neutral float-right" title="NavigableMap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="collection.html" class="btn btn-neutral float-left" title="Collection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

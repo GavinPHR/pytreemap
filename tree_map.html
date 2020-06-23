@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="TreeSet" href="tree_set.html" />
-    <link rel="prev" title="Installation" href="installation.html" /> 
+    <link rel="prev" title="Usage Demo" href="demo.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,9 +88,19 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">TreeMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">Usage Demo</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TreeMap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#constructor-summary">Constructor Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods-summary">Methods Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constructor-and-methods-details">Constructor and Methods Details</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entry.html">Entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set.html">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collection.html">Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigable_set.html">NavigableSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigable_map.html">NavigableMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
@@ -160,10 +170,301 @@
             
   <div class="section" id="treemap">
 <h1>TreeMap<a class="headerlink" href="#treemap" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#constructor-summary" id="id1">Constructor Summary</a></p></li>
+<li><p><a class="reference internal" href="#methods-summary" id="id2">Methods Summary</a></p></li>
+<li><p><a class="reference internal" href="#constructor-and-methods-details" id="id3">Constructor and Methods Details</a></p></li>
+</ul>
+</div>
+<div class="section" id="constructor-summary">
+<h2><a class="toc-backref" href="#id1">Constructor Summary</a><a class="headerlink" href="#constructor-summary" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Constructor</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap" title="TreeMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeMap(comparator=None)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Constructs a new, empty TreeMap. You can supply a</div>
+<div class="line">comparator if your keys do not implement rich</div>
+<div class="line">comparison methods (you do not need this for most</div>
+<div class="line">Python built-in objects).</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods-summary">
+<h2><a class="toc-backref" href="#id2">Methods Summary</a><a class="headerlink" href="#methods-summary" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.size" title="TreeMap.size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">size()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the number of entries in the tree.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.contains_key" title="TreeMap.contains_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">contains_key(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if this map contains a mapping</div>
+<div class="line">for the specified key. Returns <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.contains_value" title="TreeMap.contains_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">contains_value(value)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if at least 1 key is mapped to</div>
+<div class="line">the specified value. Returns <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.get" title="TreeMap.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the value to which the specified key is mapped</div>
+<div class="line">to. Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> is no such mapping exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.comparator" title="TreeMap.comparator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">comparator()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the comparator if you supplied one.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.first_key" title="TreeMap.first_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">first_key()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the first/smallest/left-most key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.last_key" title="TreeMap.last_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">last_key()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the last/largest/right-most key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.put" title="TreeMap.put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">put(key,</span> <span class="pre">value)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Associates the key with the value. If the key</div>
+<div class="line">already exists, the old associated value is</div>
+<div class="line">replaced with the new value.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.remove" title="TreeMap.remove"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">If the key exists, remove the entry and return the</div>
+<div class="line">associated value. Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.clear" title="TreeMap.clear"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Removes all entries and reset all the fields.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.first_entry" title="TreeMap.first_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">first_entry()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the first/smallest/left-most entry.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.last_entry" title="TreeMap.last_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">last_entry()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the last/largest/right-most entry.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.poll_first_entry" title="TreeMap.poll_first_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poll_first_entry()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Removes and returns the first entry.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.poll_last_entry" title="TreeMap.poll_last_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poll_last_entry()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Removes and returns the last entry.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.lower_entry" title="TreeMap.lower_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lower_entry(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the entry with the greatest key</div>
+<div class="line"><strong>less than</strong> the specified key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.lower_key" title="TreeMap.lower_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lower_key(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the greatest key <strong>less than</strong></div>
+<div class="line">the specified key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.floor_entry" title="TreeMap.floor_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">floor_entry(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the entry with the greatest key</div>
+<div class="line"><strong>less than or equal</strong> to the specified key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.floor_key" title="TreeMap.floor_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">floor_key(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the greatest key <strong>less than or equal</strong></div>
+<div class="line">to the specified key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.ceiling_entry" title="TreeMap.ceiling_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ceiling_entry(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the entry with the smallest key</div>
+<div class="line"><strong>greater than or equal to</strong> the specified key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.ceiling_key" title="TreeMap.ceiling_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ceiling_key(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the smallest key</div>
+<div class="line"><strong>greater than or equal to</strong> the specified key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.higher_entry" title="TreeMap.higher_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">higher_entry(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the entry with the smallest key</div>
+<div class="line"><strong>greater than</strong> the specified key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.higher_key" title="TreeMap.higher_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">higher_key(key)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns the smallest key <strong>greater than</strong></div>
+<div class="line">the specified key.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">key_set()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns a set view of all the keys in the map.</div>
+<div class="line">The object returned is iterable and the iteration</div>
+<div class="line">goes from the smallest to the largest key.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.navigable_key_set" title="TreeMap.navigable_key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">navigable_key_set()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Same as <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeMap.key_set()</span></code></a>.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.descending_key_set" title="TreeMap.descending_key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">descending_key_set()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Similar to <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeMap.key_set()</span></code></a> but the iteration</div>
+<div class="line">goes from the largest to the smallest key.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.values" title="TreeMap.values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">values()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns a collection view of the values in the map.</div>
+<div class="line">The object returned is iterable.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.entry_set" title="TreeMap.entry_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">entry_set()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns a set view of the entries in the map.</div>
+<div class="line">The object returned is iterable and the iteration</div>
+<div class="line">from the entry with the smallest to the entry with</div>
+<div class="line">the largest key.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.descending_map" title="TreeMap.descending_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">descending_map()</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Similar to <code class="xref py py-meth docutils literal notranslate"><span class="pre">&lt;TreeMap.entry_set&gt;()</span></code> but the</div>
+<div class="line">iteration goes from the entry with the largest key to</div>
+<div class="line">the entry with the smallest key.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line"><a class="reference internal" href="#TreeMap.sub_map" title="TreeMap.sub_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sub_map(from_key,</span> <span class="pre">to_key,</span></code></a></div>
+<div class="line"><a class="reference internal" href="#TreeMap.sub_map" title="TreeMap.sub_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_inclusive=True,</span> <span class="pre">to_inclusive=False)</span></code></a></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Returns a view of the portion of this map whose</div>
+<div class="line">keys range from from_key to to_key.</div>
+<div class="line">The default includes from_key but excludes to_key.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.head_map" title="TreeMap.head_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">head_map(to_key,</span> <span class="pre">inclusive=False)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns a view of the portion of this map whose</div>
+<div class="line">keys are less than (or equal to, if inclusive is</div>
+<div class="line">true) to_key.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.tail_map" title="TreeMap.tail_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tail_map(from_key,</span> <span class="pre">inclusive=True)</span></code></a></p></td>
+<td><div class="line-block">
+<div class="line">Returns a view of the portion of this map whose</div>
+<div class="line">keys are greater than (or equal to, if inclusive</div>
+<div class="line">is true) from_key.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Methods <code class="docutils literal notranslate"><span class="pre">is_empty()</span></code>, <code class="docutils literal notranslate"><span class="pre">put_all()</span></code>, <code class="docutils literal notranslate"><span class="pre">equals()</span></code>, <code class="docutils literal notranslate"><span class="pre">hash_code()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">to_string()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_or_default()</span></code>, <code class="docutils literal notranslate"><span class="pre">for_each()</span></code>, <code class="docutils literal notranslate"><span class="pre">replace_all()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">put_if_absent()</span></code>, <code class="docutils literal notranslate"><span class="pre">replace()</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_if_absent()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">compute_if_present()</span></code>, <code class="docutils literal notranslate"><span class="pre">compute()</span></code> and classes <code class="docutils literal notranslate"><span class="pre">SimpleEntry</span></code>,
+<code class="docutils literal notranslate"><span class="pre">SimpleImmutableEntry</span></code>, <code class="docutils literal notranslate"><span class="pre">Entry</span></code> are also implemented. For advanced users,
+please consult the source code.</p>
+</div>
+<div class="section" id="constructor-and-methods-details">
+<h2><a class="toc-backref" href="#id3">Constructor and Methods Details</a><a class="headerlink" href="#constructor-and-methods-details" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="TreeMap">
 <em class="property">class </em><code class="sig-name descname">TreeMap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comparator</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructor. You can supply a comparator if your keys
+<dd><p>Constructs a new, empty TreeMap. You can supply a comparator if your keys
 do not implement rich comparison methods (you do not need this
 for most Python built-in objects). The comparator function
 should take 2 arguments <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>,
@@ -182,233 +483,407 @@ and return 0 if <code class="docutils literal notranslate"><span class="pre">a</
 <dl class="py method">
 <dt id="TreeMap.size">
 <code class="sig-name descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.size" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the number of entries in the tree.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also use the built-in <code class="docutils literal notranslate"><span class="pre">len()</span></code> function to get the size of the tree.</p>
+</div>
+</dd></dl>
 
-<p>Return the number of entries in the tree.
-You can also use the built-in <code class="docutils literal notranslate"><span class="pre">len()</span></code> function to get the size of the tree.</p>
 <dl class="py method">
 <dt id="TreeMap.contains_key">
 <code class="sig-name descname">contains_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.contains_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if this map contains a mapping for the specified key.
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if this map contains a mapping for the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also use the <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">in</span> <span class="pre">self</span></code> syntax to check whether
+the map contains the ky.</p>
+</div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.contains_value">
 <code class="sig-name descname">contains_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.contains_value" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if at least 1 key is mapped to the specified value.
+<dd><p>Returns``True`` if at least 1 key is mapped to the specified value.
 Returns <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.get">
 <code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.get" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the value to which the specified key is mapped to.
+<dd><p>Returns the value to which the specified key is mapped to.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> is no such mapping exists.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>You can also get the value using the <code class="docutils literal notranslate"><span class="pre">self[key]</span></code> syntax. Unlike
 <a class="reference internal" href="#TreeMap.get" title="TreeMap.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a>, a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code> is raised if the key
 is not found.</p>
 </div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.comparator">
 <code class="sig-name descname">comparator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.comparator" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the comparator if you supplied one. Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</p>
+</dd></dl>
 
-<p>Returns the comparator if you supplied one. Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</p>
 <dl class="py method">
 <dt id="TreeMap.first_key">
 <code class="sig-name descname">first_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.first_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the first/smallest/left-most key.
+<dd><p>Returns the first/smallest/left-most key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>KeyError</strong> – if the map is empty</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.last_key">
 <code class="sig-name descname">last_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.last_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the last/largest/right-most key.
+<dd><p>Returns the last/largest/right-most key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>KeyError</strong> – if the map is empty</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.put">
 <code class="sig-name descname">put</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.put" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Associates the key with the value. If the key already exists,
+<dd><p>Associates the key with the value. If the key already exists,
 the old associated value is replaced with the new value.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>You can also insert a key-value pair using the <code class="docutils literal notranslate"><span class="pre">self[key]</span> <span class="pre">=</span> <span class="pre">value</span></code>
 syntax.</p>
 </div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.remove">
 <code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.remove" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>If the key exists, remove the entry and return the associated value.
+<dd><p>If the key exists, remove the entry and return the associated value.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>You can also remove an entry using the <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">self[key]</span></code> syntax.
 Unlike <a class="reference internal" href="#TreeMap.put" title="TreeMap.put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">put()</span></code></a>, a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code> is raised if the key is not found.</p>
 </div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.clear">
 <code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.clear" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Removes all entries and reset all the fields.</p>
+</dd></dl>
 
-<p>Remove all entries and reset all the fields.</p>
 <dl class="py method">
 <dt id="TreeMap.first_entry">
 <code class="sig-name descname">first_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.first_entry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the first/smallest/left-most entry. The entry returned
+<dd><p>Returns the first/smallest/left-most entry.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="entry.html"><span class="doc">Entry</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.last_entry">
 <code class="sig-name descname">last_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.last_entry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the last/largest/right-most entry. The entry returned
+<dd><p>Returns the last/largest/right-most entry.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="entry.html"><span class="doc">Entry</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.poll_first_entry">
 <code class="sig-name descname">poll_first_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.poll_first_entry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Remove and return the first entry.
+<dd><p>Removes and returns the first entry.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="entry.html"><span class="doc">Entry</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.poll_last_entry">
 <code class="sig-name descname">poll_last_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.poll_last_entry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Remove and return the last entry.
+<dd><p>Removes and returns the last entry.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="entry.html"><span class="doc">Entry</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.lower_entry">
 <code class="sig-name descname">lower_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.lower_entry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the entry with the greatest key <strong>less than</strong> the specified key.
+<dd><p>Returns the entry with the greatest key <strong>less than</strong> the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="entry.html"><span class="doc">Entry</span></a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.lower_key">
 <code class="sig-name descname">lower_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.lower_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the greatest key <strong>less than</strong> the specified key.
+<dd><p>Returns the greatest key <strong>less than</strong> the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.floor_entry">
 <code class="sig-name descname">floor_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.floor_entry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the entry with the greatest key <strong>less than or equal</strong> to the specified key.
+<dd><p>Returns the entry with the greatest key <strong>less than or equal</strong> to the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="entry.html"><span class="doc">Entry</span></a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.floor_key">
 <code class="sig-name descname">floor_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.floor_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the greatest key <strong>less than or equal</strong> to the specified key.
+<dd><p>Returns the greatest key <strong>less than or equal</strong> to the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.ceiling_entry">
 <code class="sig-name descname">ceiling_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.ceiling_entry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the entry with the smallest key <strong>greater than or equal to</strong> the specified key.
+<dd><p>Returns the entry with the smallest key <strong>greater than or equal to</strong> the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="entry.html"><span class="doc">Entry</span></a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.ceiling_key">
 <code class="sig-name descname">ceiling_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.ceiling_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the smallest key <strong>greater than or equal to</strong> the specified key.
+<dd><p>Returns the smallest key <strong>greater than or equal to</strong> the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.higher_entry">
 <code class="sig-name descname">higher_entry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.higher_entry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the entry with the smallest key <strong>greater than</strong> the specified key.
+<dd><p>Returns the entry with the smallest key <strong>greater than</strong> the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such entry exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="entry.html"><span class="doc">Entry</span></a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.higher_key">
 <code class="sig-name descname">higher_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.higher_key" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns the smallest key <strong>greater than</strong> the specified key.
+<dd><p>Returns the smallest key <strong>greater than</strong> the specified key.
 Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">key</span></code> is not comparable to the keys currently in the map.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.key_set">
 <code class="sig-name descname">key_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.key_set" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns a set view of all the keys in the map.
+The object returned is iterable and the iteration goes from the smallest to the largest key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="navigable_set.html"><span class="doc">NavigableSet</span></a></p>
+</dd>
+</dl>
+</dd></dl>
 
-<p>Returns a set view of all the keys in the map.
-The object returned is iterable and the iteration from the smallest to the largest key.</p>
 <dl class="py method">
 <dt id="TreeMap.navigable_key_set">
 <code class="sig-name descname">navigable_key_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.navigable_key_set" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Same as <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">key_set()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="navigable_set.html"><span class="doc">NavigableSet</span></a></p>
+</dd>
+</dl>
+</dd></dl>
 
-<p>Same as <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">key_set()</span></code></a>.</p>
 <dl class="py method">
 <dt id="TreeMap.descending_key_set">
 <code class="sig-name descname">descending_key_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.descending_key_set" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Similar to <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">key_set()</span></code></a> but the iteration goes from the largest to the smallest key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="navigable_set.html"><span class="doc">NavigableSet</span></a></p>
+</dd>
+</dl>
+</dd></dl>
 
-<p>Similar to <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">key_set()</span></code></a> but the iteration goes from the largest to the smallest key.</p>
 <dl class="py method">
 <dt id="TreeMap.values">
 <code class="sig-name descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.values" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns a collection view of the values in the map.
+<dd><p>Returns a collection view of the values in the map.
 The object returned is iterable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="collection.html"><span class="doc">Collection</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.entry_set">
 <code class="sig-name descname">entry_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.entry_set" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns a set view of the entries in the map.
+<dd><p>Returns a set view of the entries in the map.
 The object returned is iterable and the iteration
 from the entry with the smallest to the entry with the largest key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="set.html"><span class="doc">Set</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.descending_map">
 <code class="sig-name descname">descending_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.descending_map" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Similar to <a class="reference internal" href="#TreeMap.entry_set" title="TreeMap.entry_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">entry_set()</span></code></a> but the iteration goes
+<dd><blockquote>
+<div><p>Similar to <a class="reference internal" href="#TreeMap.entry_set" title="TreeMap.entry_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">entry_set()</span></code></a> but the iteration goes
 from the entry with the largest key to the entry with the smallest key.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="set.html"><span class="doc">Set</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.sub_map">
 <code class="sig-name descname">sub_map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">from_key</span></em>, <em class="sig-param"><span class="n">to_key</span></em>, <em class="sig-param"><span class="n">from_inclusive</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">to_inclusive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.sub_map" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns a view of the portion of this map whose keys range from from_key to to_key.
+<dd><p>Returns a view of the portion of this map whose keys range from from_key to to_key.
 The default includes from_key but excludes to_key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="navigable_map.html"><span class="doc">NavigableMap</span></a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">from_key</span></code> or <code class="docutils literal notranslate"><span class="pre">to_key</span></code> is not comparable to the keys currently in the map.</p></li>
+<li><p><strong>KeyError</strong> – If <code class="docutils literal notranslate"><span class="pre">from_key</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">to_key</span></code>;
+or if this map itself has a restricted range,
+and <code class="docutils literal notranslate"><span class="pre">from_key</span></code> or <code class="docutils literal notranslate"><span class="pre">to_key</span></code> lies outside the bounds of the range.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="TreeMap.head_map">
 <code class="sig-name descname">head_map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_key</span></em>, <em class="sig-param"><span class="n">inclusive</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.head_map" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns a view of the portion of this map whose keys are less than (or equal to, if inclusive is true) to_key.</p>
-<dl class="py method">
-<dt id="TreeMap.tail_map">
-<code class="sig-name descname">tail_map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">from_key</span></em>, <em class="sig-param"><span class="n">inclusive</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.tail_map" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Returns a view of the portion of this map whose keys are greater than (or equal to, if inclusive is true) from_key.</p>
+<dd><p>Returns a view of the portion of this map whose keys are less than (or equal to, if inclusive is true) to_key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">to_key</span></code> is not comparable to the keys currently in the map.</p></li>
+<li><p><strong>KeyError</strong> – If this map itself has a restricted range,
+and <code class="docutils literal notranslate"><span class="pre">to_key</span></code> lies outside the bounds of the range.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="TreeMap.tail_map">
+<code class="sig-name descname">tail_map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">from_key</span></em>, <em class="sig-param"><span class="n">inclusive</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.tail_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a view of the portion of this map whose keys are greater than (or equal to, if inclusive is true) from_key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">from_key</span></code> is not comparable to the keys currently in the map.</p></li>
+<li><p><strong>KeyError</strong> – If this map itself has a restricted range,
+and <code class="docutils literal notranslate"><span class="pre">from_key</span></code> lies outside the bounds of the range.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -422,7 +897,7 @@ The default includes from_key but excludes to_key.</p>
         <a href="tree_set.html" class="btn btn-neutral float-right" title="TreeSet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="demo.html" class="btn btn-neutral float-left" title="Usage Demo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

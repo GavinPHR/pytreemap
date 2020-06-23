@@ -1,2 +1,5 @@
 TreeSet
 =======
+
+.. NOTE::
+   :doc:`tree_set` is essentially :doc:`tree_map` with dummy values.
