@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Set" href="set.html" />
+    <link rel="next" title="EntrySet" href="entry_set.html" />
     <link rel="prev" title="TreeSet" href="tree_set.html" /> 
 </head>
 
@@ -92,8 +92,8 @@
 <li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Entry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collection.html">Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entry_set.html">EntrySet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_set.html">NavigableSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_map.html">NavigableMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
@@ -165,6 +165,21 @@
             
   <div class="section" id="entry">
 <h1>Entry<a class="headerlink" href="#entry" title="Permalink to this headline">¶</a></h1>
+<p>Entry supports 3 methods:</p>
+<p><code class="docutils literal notranslate"><span class="pre">get_key()</span></code> returns the key of the entry.</p>
+<p><code class="docutils literal notranslate"><span class="pre">get_value()</span></code> returns the value of the entry.</p>
+<p><code class="docutils literal notranslate"><span class="pre">set_value(value)</span></code> replaces the current value with the specified value and returns the replaced value.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Entry objects returned by TreeMap’s methods designed to be immutable.</p>
+</div>
+<p>Entry can be checked for equality (<code class="docutils literal notranslate"><span class="pre">==</span></code>), represented using strings (<code class="docutils literal notranslate"><span class="pre">print()</span></code> or <code class="docutils literal notranslate"><span class="pre">str()</span></code>), and hashed (<code class="docutils literal notranslate"><span class="pre">hash()</span></code>).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For more advanced users, you can accessed the key, value, left child, right child, parent, and color of an entry using
+<code class="docutils literal notranslate"><span class="pre">self.key</span></code>, <code class="docutils literal notranslate"><span class="pre">self.value</span></code>, <code class="docutils literal notranslate"><span class="pre">self.left</span></code>,
+<code class="docutils literal notranslate"><span class="pre">self.right</span></code>, <code class="docutils literal notranslate"><span class="pre">self.parent</span></code>, and <code class="docutils literal notranslate"><span class="pre">self.color</span></code>, respectively.</p>
+</div>
 </div>
 
 
@@ -175,7 +190,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="set.html" class="btn btn-neutral float-right" title="Set" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="entry_set.html" class="btn btn-neutral float-right" title="EntrySet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="tree_set.html" class="btn btn-neutral float-left" title="TreeSet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

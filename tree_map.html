@@ -97,8 +97,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entry.html">Entry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collection.html">Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entry_set.html">EntrySet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_set.html">NavigableSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_map.html">NavigableMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
@@ -253,14 +253,14 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.first_key" title="TreeMap.first_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">first_key()</span></code></a></p></td>
 <td><div class="line-block">
 <div class="line">Returns the first/smallest/left-most key.</div>
-<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">KeyError</span></code> is raised if no such key exists</div>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.last_key" title="TreeMap.last_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">last_key()</span></code></a></p></td>
 <td><div class="line-block">
 <div class="line">Returns the last/largest/right-most key.</div>
-<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">KeyError</span></code> is raised if no such key exists</div>
 </div>
 </td>
 </tr>
@@ -387,14 +387,14 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.navigable_key_set" title="TreeMap.navigable_key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">navigable_key_set()</span></code></a></p></td>
 <td><div class="line-block">
-<div class="line">Same as <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeMap.key_set()</span></code></a>.</div>
+<div class="line">Same as <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">key_set()</span></code></a>.</div>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#TreeMap.descending_key_set" title="TreeMap.descending_key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">descending_key_set()</span></code></a></p></td>
 <td><div class="line-block">
-<div class="line">Similar to <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TreeMap.key_set()</span></code></a> but the iteration</div>
-<div class="line">goes from the largest to the smallest key.</div>
+<div class="line">Similar to <a class="reference internal" href="#TreeMap.key_set" title="TreeMap.key_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">key_set()</span></code></a> but the</div>
+<div class="line">iteration goes from the largest to the smallest key.</div>
 </div>
 </td>
 </tr>
@@ -416,9 +416,7 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#TreeMap.descending_map" title="TreeMap.descending_map"><code class="xref py py-meth docutils literal notranslate"><span class="pre">descending_map()</span></code></a></p></td>
 <td><div class="line-block">
-<div class="line">Similar to <code class="xref py py-meth docutils literal notranslate"><span class="pre">&lt;TreeMap.entry_set&gt;()</span></code> but the</div>
-<div class="line">iteration goes from the entry with the largest key to</div>
-<div class="line">the entry with the smallest key.</div>
+<div class="line">Returns a reverse order view of the map.</div>
 </div>
 </td>
 </tr>
@@ -541,8 +539,7 @@ is not found.</p>
 <dl class="py method">
 <dt id="TreeMap.first_key">
 <code class="sig-name descname">first_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.first_key" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the first/smallest/left-most key.
-Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</p>
+<dd><p>Returns the first/smallest/left-most key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>KeyError</strong> – if the map is empty</p>
@@ -553,8 +550,7 @@ Returns <code class="docutils literal notranslate"><span class="pre">None</span>
 <dl class="py method">
 <dt id="TreeMap.last_key">
 <code class="sig-name descname">last_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.last_key" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last/largest/right-most key.
-Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such key exists.</p>
+<dd><p>Returns the last/largest/right-most key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>KeyError</strong> – if the map is empty</p>
@@ -799,7 +795,7 @@ The object returned is iterable and the iteration goes from the smallest to the 
 The object returned is iterable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="collection.html"><span class="doc">Collection</span></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="values.html"><span class="doc">Values</span></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -812,7 +808,7 @@ The object returned is iterable and the iteration
 from the entry with the smallest to the entry with the largest key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="set.html"><span class="doc">Set</span></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="entry_set.html"><span class="doc">EntrySet</span></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -821,12 +817,11 @@ from the entry with the smallest to the entry with the largest key.</p>
 <dt id="TreeMap.descending_map">
 <code class="sig-name descname">descending_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TreeMap.descending_map" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
-<div><p>Similar to <a class="reference internal" href="#TreeMap.entry_set" title="TreeMap.entry_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">entry_set()</span></code></a> but the iteration goes
-from the entry with the largest key to the entry with the smallest key.</p>
+<div><p>Returns a reverse order view of the map.</p>
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="set.html"><span class="doc">Set</span></a></p>
+<dd class="field-odd"><p><a class="reference internal" href="navigable_map.html"><span class="doc">NavigableMap</span></a></p>
 </dd>
 </dl>
 </dd></dl>

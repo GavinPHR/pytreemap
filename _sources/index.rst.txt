@@ -22,8 +22,8 @@ pytreemap
    ./tree_map
    ./tree_set
    ./entry
-   ./set
-   ./collection
+   ./entry_set
+   ./values
    ./navigable_set
    ./navigable_map
    ./benchmarks

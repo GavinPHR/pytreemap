@@ -1,8 +1,6 @@
 TreeMap
 =======
 
-
-
 .. contents:: Contents
    :local:
 
@@ -39,10 +37,10 @@ Methods Summary
 |                                                                      | | Returns ``None`` otherwise.                            |
 +----------------------------------------------------------------------+----------------------------------------------------------+
 | :meth:`first_key() <TreeMap.first_key>`                              | | Returns the first/smallest/left-most key.              |
-|                                                                      | | Returns ``None`` if no such key exists.                |
+|                                                                      | | ``KeyError`` is raised if no such key exists           |
 +----------------------------------------------------------------------+----------------------------------------------------------+
 | :meth:`last_key() <TreeMap.last_key>`                                | | Returns the last/largest/right-most key.               |
-|                                                                      | | Returns ``None`` if no such key exists.                |
+|                                                                      | | ``KeyError`` is raised if no such key exists           |
 +----------------------------------------------------------------------+----------------------------------------------------------+
 | :meth:`put(key, value) <TreeMap.put>`                                | | Associates the key with the value. If the key          |
 |                                                                      | | already exists, the old associated value is            |
@@ -101,10 +99,10 @@ Methods Summary
 |                                                                      | | The object returned is iterable and the iteration      |
 |                                                                      | | goes from the smallest to the largest key.             |
 +----------------------------------------------------------------------+----------------------------------------------------------+
-| :meth:`navigable_key_set() <TreeMap.navigable_key_set>`              | | Same as :meth:`TreeMap.key_set`.                       |
+| :meth:`navigable_key_set() <TreeMap.navigable_key_set>`              | | Same as :meth:`key_set() <TreeMap.key_set>`.           |
 +----------------------------------------------------------------------+----------------------------------------------------------+
-| :meth:`descending_key_set() <TreeMap.descending_key_set>`            | | Similar to :meth:`TreeMap.key_set` but the iteration   |
-|                                                                      | | goes from the largest to the smallest key.             |
+| :meth:`descending_key_set() <TreeMap.descending_key_set>`            | | Similar to :meth:`key_set() <TreeMap.key_set>` but the |
+|                                                                      | | iteration goes from the largest to the smallest key.   |
 +----------------------------------------------------------------------+----------------------------------------------------------+
 | :meth:`values() <TreeMap.values>`                                    | | Returns a collection view of the values in the map.    |
 |                                                                      | | The object returned is iterable.                       |
@@ -114,9 +112,7 @@ Methods Summary
 |                                                                      | | from the entry with the smallest to the entry with     |
 |                                                                      | | the largest key.                                       |
 +----------------------------------------------------------------------+----------------------------------------------------------+
-| :meth:`descending_map() <TreeMap.descending_map>`                    | | Similar to :meth:`<TreeMap.entry_set>` but the         |
-|                                                                      | | iteration goes from the entry with the largest key to  |
-|                                                                      | | the entry with the smallest key.                       |
+| :meth:`descending_map() <TreeMap.descending_map>`                    | | Returns a reverse order view of the map.               |
 +----------------------------------------------------------------------+----------------------------------------------------------+
 | | :meth:`sub_map(from_key, to_key, <TreeMap.sub_map>`                | | Returns a view of the portion of this map whose        |
 | | :meth:`from_inclusive=True, to_inclusive=False) <TreeMap.sub_map>` | | keys range from from_key to to_key.                    |
@@ -204,14 +200,12 @@ Constructor and Methods Details
    .. method:: first_key()
 
       Returns the first/smallest/left-most key.
-      Returns ``None`` if no such key exists.
 
       :raise KeyError: if the map is empty
 
    .. method:: last_key()
 
       Returns the last/largest/right-most key.
-      Returns ``None`` if no such key exists.
 
       :raise KeyError: if the map is empty
 
@@ -353,7 +347,7 @@ Constructor and Methods Details
       Returns a collection view of the values in the map.
       The object returned is iterable.
 
-      :rtype: :doc:`collection`
+      :rtype: :doc:`values`
 
    .. method:: entry_set()
 
@@ -361,14 +355,13 @@ Constructor and Methods Details
       The object returned is iterable and the iteration
       from the entry with the smallest to the entry with the largest key.
 
-      :rtype: :doc:`set`
+      :rtype: :doc:`entry_set`
 
    .. method:: descending_map()
 
-      Similar to :meth:`entry_set` but the iteration goes
-      from the entry with the largest key to the entry with the smallest key.
+      Returns a reverse order view of the map.
 
-     :rtype: :doc:`set`
+     :rtype: :doc:`navigable_map`
 
    .. method:: sub_map(from_key, to_key, from_inclusive=True, to_inclusive=False)
 

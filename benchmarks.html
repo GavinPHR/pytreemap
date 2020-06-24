@@ -92,8 +92,8 @@
 <li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_set.html">TreeSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="entry.html">Entry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collection.html">Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entry_set.html">EntrySet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_set.html">NavigableSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_map.html">NavigableMap</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmarks</a></li>
@@ -165,6 +165,32 @@
             
   <div class="section" id="benchmarks">
 <h1>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this headline">¶</a></h1>
+<p>All benchmarks are done on a laptop with
+Intel Core i7-7700HQ CPU and 16GB of RAM.</p>
+<p>Since this package is an implementation
+of the Java TreeMap, the benchmarks
+are focused on comparing the performance
+between this package and Java’s TreeMap.</p>
+<p>This package is currently written in pure
+Python and it should come at no surprise
+that it is much slower than Java, especially
+when the size of the tree is large.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A Cython version is in the works.</p>
+</div>
+<p>Benchmark procedure:</p>
+<ol class="arabic simple">
+<li><p>Prepare <span class="math notranslate nohighlight">\(n\)</span> entries with distinct keys. (<span class="math notranslate nohighlight">\(n\)</span> ranges from 1000 to 60000 with 1000 interval.)</p></li>
+<li><p>Insert/Remove/Search them into the map in random order and record the completion time.</p></li>
+<li><p>Repeat step 1-2 two more times and average the result.</p></li>
+</ol>
+<p>Here is result using Java TreeMap:</p>
+<a class="reference internal image-reference" href="_images/java.png"><img alt="_images/java.png" class="align-center" src="_images/java.png" style="width: 500px;" /></a>
+<p>And here is the result using pytreemap:</p>
+<a class="reference internal image-reference" href="_images/pytreemap.png"><img alt="_images/pytreemap.png" class="align-center" src="_images/pytreemap.png" style="width: 500px;" /></a>
+<p>Overlay the plots together, we can see that pytreemap is ~30x slower:</p>
+<a class="reference internal image-reference" href="_images/java_vs_pytreemap.png"><img alt="_images/java_vs_pytreemap.png" class="align-center" src="_images/java_vs_pytreemap.png" style="width: 500px;" /></a>
 </div>
 
 

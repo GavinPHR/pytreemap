@@ -90,10 +90,14 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="demo.html">Usage Demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_map.html">TreeMap</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">TreeSet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TreeSet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#constructor-summary">Constructor Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods-summary">Methods Summary</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="entry.html">Entry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="collection.html">Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entry_set.html">EntrySet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_set.html">NavigableSet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigable_map.html">NavigableMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
@@ -167,7 +171,210 @@
 <h1>TreeSet<a class="headerlink" href="#treeset" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference internal" href="#"><span class="doc">TreeSet</span></a> is essentially <a class="reference internal" href="tree_map.html"><span class="doc">TreeMap</span></a> with dummy values.</p>
+<p><a class="reference internal" href="#"><span class="doc">TreeSet</span></a> is essentially <a class="reference internal" href="tree_map.html"><span class="doc">TreeMap</span></a> with dummy values.
+So only constructor and methods summaries are provided here.</p>
+</div>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#constructor-summary" id="id1">Constructor Summary</a></p></li>
+<li><p><a class="reference internal" href="#methods-summary" id="id2">Methods Summary</a></p></li>
+</ul>
+</div>
+<div class="section" id="constructor-summary">
+<h2><a class="toc-backref" href="#id1">Constructor Summary</a><a class="headerlink" href="#constructor-summary" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Constructor</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TreeSet(comparator=None)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Constructs a new, empty TreeSap. You can supply a</div>
+<div class="line">comparator if your elements do not implement rich</div>
+<div class="line">comparison methods (you do not need this for most</div>
+<div class="line">Python built-in objects).</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="methods-summary">
+<h2><a class="toc-backref" href="#id2">Methods Summary</a><a class="headerlink" href="#methods-summary" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iterator()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns an iterator that iterates the elements</div>
+<div class="line">from the smallest to the largest.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">descending_iterator()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Similar to <code class="docutils literal notranslate"><span class="pre">iterator()</span></code> but the iteration</div>
+<div class="line">goes from the largest element to the smallest.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">descending_set()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns a reverse order view of the elements.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">size()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns the number of elements in the set.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">is_empty()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the set contains no element.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">contains(o)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if this map contains the</div>
+<div class="line">specified element. Returns <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">add(e)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Adds the specified element to the set if</div>
+<div class="line">it is not already present.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">remove(o)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Removes the specified element if present</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">clear()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Removes all elements.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">sub_map(from_element,</span> <span class="pre">to_element</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">from_inclusive=True,</span> <span class="pre">to_inclusive=False)</span></code></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Returns a view of the portion of this set whose</div>
+<div class="line">elements range from from_element to to_element.</div>
+<div class="line">The default includes from_element but</div>
+<div class="line">excludes to_element.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">head_map(to_element,</span> <span class="pre">inclusive=False)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns a view of the portion of this set whose</div>
+<div class="line">elements are less than (or equal to, if</div>
+<div class="line">inclusive is true) to_elemnt.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tail_map(from_element,</span> <span class="pre">inclusive=True)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns a view of the portion of this set whose</div>
+<div class="line">elements are greater than (or equal to, if</div>
+<div class="line">inclusive is true) from_element.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">comparator()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns the comparator if you supplied one.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">first()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns the first/smallest/left-most element.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">KeyError</span></code> is raised if no such element exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">last()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns the last/largest/right-most element.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">KeyError</span></code> is raised if no such element exists</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lower(e)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns the greatest element <strong>less than</strong></div>
+<div class="line">the specified element.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such element exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">floor(e)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns the greatest element</div>
+<div class="line"><strong>less than or equal</strong> to the specified element.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such element exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ceiling(e)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns the smallest element</div>
+<div class="line"><strong>greater than or equal to</strong> the specified element.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such element exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">higher(e)</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Returns the smallest element <strong>greater than</strong></div>
+<div class="line">the specified element.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such element exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">poll_first()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Removes and returns the first element.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such element exists.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">poll_last()</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Removes and returns the last element.</div>
+<div class="line">Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no such element exists.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
