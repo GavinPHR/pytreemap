@@ -10,7 +10,7 @@ are focused on comparing the performance
 between this package and Java's TreeMap. 
 
 This package is currently written in pure
-Python and it should come at no surprise
+Python and it should come as no surprise
 that it is much slower than Java, especially
 when the size of the tree is large.
 

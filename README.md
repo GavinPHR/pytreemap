@@ -16,12 +16,12 @@ pip install pytreemap
 ```
 
 ## Documentation
-The documentation can be accessed at: https://gavinphr.github.io/pytreemap/
+[Click here to access the documentation](https://gavinphr.github.io/pytreemap/)
 
 ## Basic Usage
 
 This demo aims to show you the basic operations available in this package.
-Consult the documentation for more details.
+Consult the [documentation]((https://gavinphr.github.io/pytreemap/)) for more details.
 
 ### Import and instantiate
 
@@ -112,18 +112,18 @@ Benchmark procedure:
 Here is result using Java TreeMap:
 
 <p align="center">
-<img src="./benchmarks/java.png" width="450"/>
+<img src="https://raw.githubusercontent.com/GavinPHR/pytreemap/master/benchmarks/java.png" width="450"/>
 </p>
 
 And here is the result using pytreemap:
 
 <p align="center">
-<img src="./benchmarks/pytreemap.png" width="450"/>
+<img src="https://raw.githubusercontent.com/GavinPHR/pytreemap/master/benchmarks/pytreemap.png" width="450"/>
 </p>
 
 Overlay the plots together, we can see that pytreemap is ~30x slower:
 
 <p align="center">
-<img src="./benchmarks/java_vs_pytreemap.png" width="450"/>
+<img src="https://raw.githubusercontent.com/GavinPHR/pytreemap/master/benchmarks/java_vs_pytreemap.png" width="450"/>
 </p>
 
