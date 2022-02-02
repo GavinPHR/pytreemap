@@ -144,9 +144,9 @@ class NavigableSubMap(AbstractMap, NavigableMap):
     __reversed__ = descending_key_iterator
 
     def is_empty(self):
-        return (self.m.is_emptry()
+        return (self.m.is_empty()
                 if self.from_start and self.to_end
-                else self.entry_set().is_emptry())
+                else self.entry_set().is_empty())
 
     def size(self):
         return (self.m.size()
