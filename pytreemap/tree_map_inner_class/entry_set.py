@@ -7,7 +7,7 @@ from pytreemap.abstract.map import Map
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -18,7 +18,7 @@ class EntrySet(AbstractSet):
         self.tm = tree_map
 
     def iterator(self):
-        return self.tm.EntryIterator(self.tm.get_first_entry())
+        return self.tm.EntryIterator(self.tm.get_first_entry(), self.tm)
 
     __iter__ = iterator
 

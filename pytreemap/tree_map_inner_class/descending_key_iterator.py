@@ -2,12 +2,11 @@
 """TreeMap inner class.
 """
 from .private_entry_iterator import PrivateEntryIterator
-from pytreemap.exception import IllegalStateError, ConcurrentModificationError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -23,9 +22,9 @@ class DescendingKeyIterator(PrivateEntryIterator):
 
     def remove(self):
         if self.last_returned is None:
-            raise IllegalStateError
-        if self.tm.mod_count != self.expected_mod_count:
-            raise ConcurrentModificationError
+            raise RuntimeError
+        if self.tm._mod_count != self.expected_mod_count:
+            raise RuntimeError
         self.tm.delete_entry(self.last_returned)
         self.last_returned = None
-        self.expected_mod_count = self.tm.mod_count
+        self.expected_mod_count = self.tm._mod_count

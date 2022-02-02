@@ -1,0 +1,40 @@
+language: python
+
+python:
+  - "3.5"
+  - "3.6"     
+  - "3.7"
+  - "3.8"
+
+install:
+  # Install requirements
+  - pip install pytest
+  - pip install coverage
+  - pip install codecov
+  - pip install sphinx
+  - pip install sphinx-rtd-theme
+  # Install pytreemap
+  - pip install .
+
+script:
+  # run tests
+  - coverage run --source=./pytreemap -m pytest
+  - coverage xml
+  # build docs
+  - cd docs
+  - make html
+  - touch _build/html/.nojekyll
+
+after_success:
+  - codecov
+
+# Tell Travis CI to copy the documentation to the gh-pages branch of
+# your GitHub repository.
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  on:
+    branch: master
+  local_dir: docs/_build/html/

@@ -1,0 +1,13 @@
+#!/bin/bash 
+# First arg ($1) should be the number of entries
+python3 sequential_put.py $1
+python3 sequential_put_reversed.py $1
+python3 randomized_put.py $1
+
+python3 sequential_remove.py $1
+python3 sequential_remove_reversed.py $1
+python3 randomized_remove.py $1
+
+python3 sequential_get.py $1
+python3 sequential_get_reversed.py $1
+python3 randomized_get.py $1

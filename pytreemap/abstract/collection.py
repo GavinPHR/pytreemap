@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -66,14 +66,12 @@ class Collection(ABC):
     def clear(self):
         raise NotImplementedError
 
-    @abstractmethod
     def equals(self, o):
-        raise NotImplementedError
+        return self is o
 
     __eq__ = equals
 
-    @abstractmethod
     def hash_code(self):
-        raise NotImplementedError
+        return object.__hash__(self)
 
     __hash__ = hash_code

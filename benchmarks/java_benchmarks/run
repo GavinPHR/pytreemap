@@ -1,0 +1,22 @@
+#!/bin/bash 
+# First arg ($1) should be the number of entries
+javac SequentialPut.java
+java SequentialPut $1
+javac SequentialPutReversed.java
+java SequentialPutReversed $1
+javac RandomizedPut.java
+java RandomizedPut $1
+
+javac SequentialRemove.java
+java SequentialRemove $1
+javac SequentialRemoveReversed.java
+java SequentialRemoveReversed $1
+javac RandomizedRemove.java
+java RandomizedRemove $1
+
+javac SequentialGet.java
+java SequentialGet $1
+javac SequentialGetReversed.java
+java SequentialGetReversed $1
+javac RandomizedGet.java
+java RandomizedGet $1

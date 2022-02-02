@@ -2,12 +2,12 @@
 """TreeMap inner class.
 """
 from .navigable_sub_map import NavigableSubMap
-import pytreemap.tree_map_inner_class.ascending_sub_map as asm
+import pytreemap as ptm
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -19,7 +19,7 @@ class DescendingSubMap(NavigableSubMap):
         super().__init__(m,
                          from_start, lo, lo_inclusive,
                          to_end, hi, hi_inclusive)
-        self.reverse_comparator = lambda a, b: self.m.comparator(b, a)
+        self.reverse_comparator = lambda a, b: self.m._comparator(b, a)
 
     def comparator(self):
         return self.reverse_comparator
@@ -27,23 +27,23 @@ class DescendingSubMap(NavigableSubMap):
     def sub_map(self, from_key, to_key,
                 from_inclusive=True, to_inclusive=False):
         if not self.in_range(from_key, from_inclusive):
-            raise ValueError('from_key out of range')
+            raise KeyError('from_key out of range')
         if not self.in_range(to_key, to_inclusive):
-            raise ValueError('to_key out of range')
+            raise KeyError('to_key out of range')
         return DescendingSubMap(self.m,
                                 False, to_key, to_inclusive,
                                 False, from_key, from_inclusive)
 
     def head_map(self, to_key, inclusive=False):
         if not self.in_range(to_key, inclusive):
-            raise ValueError('to_key out of range')
+            raise KeyError('to_key out of range')
         return DescendingSubMap(self.m,
                                 False, to_key, inclusive,
                                 self.to_end, self.hi, self.hi_inclusive)
 
     def tail_map(self, from_key, inclusive=True):
         if not self.in_range(from_key, inclusive):
-            raise ValueError('from_key out of range')
+            raise KeyError('from_key out of range')
         return DescendingSubMap(self.m,
                                 self.from_start, self.lo, self.lo_inclusive,
                                 False, from_key, inclusive)
@@ -51,7 +51,7 @@ class DescendingSubMap(NavigableSubMap):
     def descending_map(self):
         if self.descending_map_view is None:
             self.descending_map_view = \
-                asm.AscendingSubMap(self.m,
+                ptm.AscendingSubMap(self.m,
                                     self.from_start, self.lo, self.lo_inclusive,
                                     self.to_end, self.hi, self.hi_inclusive)
         return self.descending_map_view

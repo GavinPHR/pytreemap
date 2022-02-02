@@ -8,7 +8,7 @@ from .abstract.navigable_map import NavigableMap
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
@@ -18,19 +18,19 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         """User can pass in a comparator function to allow key objects
         that do not implement the rich comparison methods.
         """
-        self.root = None
-        self.comparator = comparator
-        self.size = 0
-        self.mod_count = 0
+        self._root = None
+        self._comparator = comparator
+        self._size = 0
+        self._mod_count = 0
 
         super().__init__()
-        self.entry_set = None
-        self.navigable_key_set = None
-        self.descending_map = None
+        self._entry_set = None
+        self._navigable_key_set = None
+        self._descending_map = None
 
     def size(self):
         """Return the number of entries in the tree."""
-        return self.size
+        return self._size
 
     __len__ = size
 
@@ -57,11 +57,15 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         p = self.get_entry(key)
         return None if p is None else p.value
 
-    __getitem__ = get
+    def __getitem__(self, key):
+        p = self.get_entry(key)
+        if p is None:
+            raise KeyError('key not found')
+        return p.value
 
     def comparator(self):
         """Return the comparator function."""
-        return self.comparator
+        return self._comparator
 
     def first_key(self):
         """Return the first/smallest/left-most key."""
@@ -73,11 +77,11 @@ class TreeMap(NavigableMap, AbstractMap, Map):
 
     def get_entry(self, key):
         """Return the entry for the key, or None if the key is not present."""
-        if self.comparator is not None:
+        if self._comparator is not None:
             return self.get_entry_using_comparator(key)
         if key is None:
             raise TypeError
-        p = self.root
+        p = self._root
         while p is not None:
             if key < p.key:
                 p = p.left
@@ -91,9 +95,9 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         """Return the entry for the key, or None if the key is not present.
         This method is only called if a comparator function is supplied.
         """
-        cpr = self.comparator
+        cpr = self._comparator
         if cpr is not None:
-            p = self.root
+            p = self._root
             while p is not None:
                 cmp = cpr(key, p.key)
                 if cmp < 0:
@@ -108,7 +112,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         """If key exists, return the corresponding entry.
         Otherwise return the entry with the least key greater than key.
         If no such entry exists, return None."""
-        p = self.root
+        p = self._root
         while p is not None:
             cmp = self.compare(key, p.key)
             if cmp < 0:
@@ -134,7 +138,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         """If key exists, return the corresponding entry.
         Otherwise return the entry with the greatest key less than key.
         If no such entry exists, return None."""
-        p = self.root
+        p = self._root
         while p is not None:
             cmp = self.compare(key, p.key)
             if cmp > 0:
@@ -159,7 +163,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
     def get_higher_entry(self, key):
         """Return entry with the least key greater than key.
         If no such entry exists, return None."""
-        p = self.root
+        p = self._root
         while p is not None:
             cmp = self.compare(key, p.key)
             if cmp < 0:
@@ -182,7 +186,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
     def get_lower_entry(self, key):
         """Return entry with the greatest key less than key.
         If no such entry exists, return None."""
-        p = self.root
+        p = self._root
         while p is not None:
             cmp = self.compare(key, p.key)
             if cmp > 0:
@@ -205,16 +209,16 @@ class TreeMap(NavigableMap, AbstractMap, Map):
     def put(self, key, value):
         """Associates the key with the value.
         If the key already exists, the old value is replaced."""
-        t = self.root
+        t = self._root
         if t is None:
             self.compare(key, key)  # Type/None check
-            self.root = self.Entry(key, value, None)
-            self.size = 1
-            self.mod_count += 1
+            self._root = self.Entry(key, value, None)
+            self._size = 1
+            self._mod_count += 1
             return None
         cmp = None
         parent = None
-        cpr = self.comparator
+        cpr = self._comparator
         # Split compare paths between comparator function
         # and objects that implement rich comparisons.
         if cpr is not None:
@@ -231,7 +235,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
                     break
         else:
             if key is None:
-                raise TypeError('Key None is not comparable.')
+                raise TypeError
             while True:
                 parent = t
                 if key < t.key:
@@ -250,8 +254,8 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         else:
             parent.right = e
         self.fix_after_insertion(e)
-        self.size += 1
-        self.mod_count += 1
+        self._size += 1
+        self._mod_count += 1
         return None
 
     __setitem__ = put
@@ -266,13 +270,17 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         self.delete_entry(p)
         return old_value
 
-    __delitem__ = remove
+    def __delitem__(self, key):
+        p = self.get_entry(key)
+        if p is None:
+            raise KeyError('key not found')
+        self.delete_entry(p)
 
     def clear(self):
         """Remove all entries."""
-        self.mod_count += 1
-        self.size = 0
-        self.root = None
+        self._mod_count += 1
+        self._size = 0
+        self._root = None
 
     """The NavigableMap API."""
 
@@ -324,29 +332,29 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         return self.navigable_key_set()
 
     def navigable_key_set(self):
-        if self.navigable_key_set is None:
-            self.navigable_key_set = self.KeySet(self)
-        return self.navigable_key_set
+        if self._navigable_key_set is None:
+            self._navigable_key_set = self.KeySet(self)
+        return self._navigable_key_set
 
     def descending_key_set(self):
         return self.descending_map().navigable_key_set()
 
     def values(self):
-        if self.values is None:
-            self.values = self.Values(self)
-        return self.values
+        if self._values is None:
+            self._values = self.Values(self)
+        return self._values
 
     def entry_set(self):
-        if self.entry_set is None:
-            self.entry_set = self.EntrySet(self)
-        return self.entry_set
+        if self._entry_set is None:
+            self._entry_set = self.EntrySet(self)
+        return self._entry_set
 
     def descending_map(self):
-        if self.descending_map is None:
-            self.descending_map = self.DescendingSubMap(self,
-                                                        True, None, True,
-                                                        True, None, True)
-        return self.descending_map
+        if self._descending_map is None:
+            self._descending_map = self.DescendingSubMap(self,
+                                                         True, None, True,
+                                                         True, None, True)
+        return self._descending_map
 
     def sub_map(self, from_key, to_key,
                 from_inclusive=True, to_inclusive=False):
@@ -378,14 +386,18 @@ class TreeMap(NavigableMap, AbstractMap, Map):
     __reversed__ = descending_key_iterator
 
     from .tree_map_inner_class.key_set import KeySet
+    from .tree_map_inner_class.private_entry_iterator \
+        import PrivateEntryIterator
+    from .tree_map_inner_class.entry_iterator import EntryIterator
+    from .tree_map_inner_class.value_iterator import ValueIterator
     from .tree_map_inner_class.key_iterator import KeyIterator
     from .tree_map_inner_class.descending_key_iterator \
         import DescendingKeyIterator
 
     def compare(self, k1, k2):
         """Compare two keys, using the comparator function if supplied"""
-        if self.comparator is not None:
-            return self.comparator(k1, k2)
+        if self._comparator is not None:
+            return self._comparator(k1, k2)
         if k1 < k2:
             return -1
         elif k1 > k2:
@@ -414,9 +426,10 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         """Return the key of an entry.
         Raise exception if entry is None."""
         if e is None:
-            raise KeyError('Keys cannot be of NoneType.')
+            raise KeyError('key not found')
         return e.key
 
+    from .tree_map_inner_class.navigable_sub_map import NavigableSubMap
     from .tree_map_inner_class.ascending_sub_map import AscendingSubMap
     from .tree_map_inner_class.descending_sub_map import DescendingSubMap
 
@@ -428,7 +441,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
 
     def get_first_entry(self):
         """Return the first/left-most/smallest entry."""
-        p = self.root
+        p = self._root
         if p is not None:
             while p.left is not None:
                 p = p.left
@@ -436,7 +449,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
 
     def get_last_entry(self):
         """Return the last/right-most/largest entry."""
-        p = self.root
+        p = self._root
         if p is not None:
             while p.right is not None:
                 p = p.right
@@ -524,7 +537,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
                 r.left.parent = p
             r.parent = p.parent
             if p.parent is None:
-                self.root = r
+                self._root = r
             elif p.parent.left is p:
                 p.parent.left = r
             else:
@@ -545,7 +558,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
                 l.right.parent = p
             l.parent = p.parent
             if p.parent is None:
-                self.root = l
+                self._root = l
             elif p.parent.right is p:
                 p.parent.right = l
             else:
@@ -561,7 +574,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
 
         x.color = RED
         while (x is not None and
-               x is not self.root and
+               x is not self._root and
                x.parent.color == RED):
             if parent_of(x) is left_of(parent_of(parent_of(x))):
                 y = right_of(parent_of(parent_of(x)))
@@ -591,11 +604,11 @@ class TreeMap(NavigableMap, AbstractMap, Map):
                     set_color(parent_of(x), BLACK)
                     set_color(parent_of(parent_of(x)), RED)
                     self.rotate_left(parent_of(parent_of(x)))
-        self.root.color = BLACK
+        self._root.color = BLACK
 
     def delete_entry(self, p):
-        self.mod_count += 1
-        self.size -= 1
+        self._mod_count += 1
+        self._size -= 1
         if p.left is not None and p.right is not None:
             s = self.successor(p)
             p.key = s.key
@@ -605,7 +618,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         if replacement is not None:
             replacement.parent = p.parent
             if p.parent is None:
-                self.root = replacement
+                self._root = replacement
             elif p is p.parent.left:
                 p.parent.left = replacement
             else:
@@ -614,7 +627,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
             if p.color == TreeMap.BLACK:
                 self.fix_after_deletion(replacement)
         elif p.parent is None:
-            self.root = None
+            self._root = None
         else:
             if p.color == TreeMap.BLACK:
                 self.fix_after_deletion(p)
@@ -632,7 +645,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
         parent_of, set_color = self.parent_of, self.set_color
         color_of = self.color_of
 
-        while x is not self.root and color_of(x) == BLACK:
+        while x is not self._root and color_of(x) == BLACK:
             if x is left_of(parent_of(x)):
                 sib = right_of(parent_of(x))
                 if color_of(sib) == RED:
@@ -653,7 +666,7 @@ class TreeMap(NavigableMap, AbstractMap, Map):
                     set_color(parent_of(x), BLACK)
                     set_color(right_of(sib), BLACK)
                     self.rotate_left(parent_of(x))
-                    x = self.root
+                    x = self._root
             else:
                 sib = left_of(parent_of(x))
                 if color_of(sib) == RED:
@@ -675,5 +688,5 @@ class TreeMap(NavigableMap, AbstractMap, Map):
                     set_color(parent_of(x), BLACK)
                     set_color(left_of(sib), BLACK)
                     self.rotate_right(parent_of(x))
-                    x = self.root
+                    x = self._root
         set_color(x, BLACK)

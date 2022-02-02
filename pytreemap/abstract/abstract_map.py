@@ -3,19 +3,18 @@
 """
 from abc import abstractmethod
 from .map import Map
-from pytreemap.exception import UnsupportedOperationError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 class AbstractMap(Map):
 
     def __init__(self):
-        self.key_set = None
-        self.values = None
+        self._key_set = None
+        self._values = None
 
     def size(self):
         return self.entry_set().size()
@@ -66,7 +65,7 @@ class AbstractMap(Map):
     __getitem__ = get
 
     def put(self, key, value):
-        raise UnsupportedOperationError
+        raise NotImplementedError
 
     __setitem__ = put
 
@@ -99,7 +98,7 @@ class AbstractMap(Map):
         self.entry_set().clear()
 
     def key_set(self):
-        if self.key_set is None:
+        if self._key_set is None:
 
             from .abstract_set import AbstractSet
             class AnonAbstractSet(AbstractSet):
@@ -145,11 +144,11 @@ class AbstractMap(Map):
 
                 __contains__ = contains
 
-            self.key_set = AnonAbstractSet(self)
-        return self.key_set
+            self._key_set = AnonAbstractSet(self)
+        return self._key_set
 
     def values(self):
-        if self.values is None:
+        if self._values is None:
 
             from .abstract_collection import AbstractCollection
             class AnonAbstractCollection(AbstractCollection):
@@ -195,8 +194,18 @@ class AbstractMap(Map):
 
                 __contains__ = contains
 
-            self.values = AnonAbstractCollection(self)
-        return self.values
+                def equals(self, o):
+                    raise NotImplementedError
+
+                __eq__ = equals
+
+                def hash_code(self):
+                    raise NotImplementedError
+
+                __hash__ = hash_code
+
+            self._values = AnonAbstractCollection(self)
+        return self._values
 
     @abstractmethod
     def entry_set(self):
@@ -256,8 +265,10 @@ class AbstractMap(Map):
 
     class SimpleEntry(Map.Entry):
 
-        def __init__(self, key_or_entry, value=None):
-            if value is None:  # Assume an entry is passed.
+        # Using some arbitrary value as placeholder
+        # because value can be None.
+        def __init__(self, key_or_entry, value='~!@)(*&^'):
+            if value == '~!@)(*&^':  # Assume an entry is passed.
                 entry = key_or_entry
                 self.key = entry.get_key()
                 self.value = entry.get_value()
@@ -299,8 +310,8 @@ class AbstractMap(Map):
 
     class SimpleImmutableEntry(Map.Entry):
 
-        def __init__(self, key_or_entry, value=None):
-            if value is None:  # Assume an entry is passed.
+        def __init__(self, key_or_entry, value='~!@)(*&^'):
+            if value == '~!@)(*&^':  # Assume an entry is passed.
                 entry = key_or_entry
                 self.key = entry.get_key()
                 self.value = entry.get_value()
@@ -316,7 +327,7 @@ class AbstractMap(Map):
             return self.value
 
         def set_value(self, value):
-            raise UnsupportedOperationError
+            raise NotImplementedError
 
         def equals(self, o):
             if not isinstance(o, Map.Entry):

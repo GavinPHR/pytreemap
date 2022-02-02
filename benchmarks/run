@@ -1,0 +1,44 @@
+printf "randomized_put.py\n"
+for (( i=1000; i<=60000; i+=1000 ))
+do
+    python3 randomized_put.py $i
+done
+printf "\n"
+
+printf "randomized_remove.py\n"
+for (( i=1000; i<=60000; i+=1000 ))
+do
+    python3 randomized_remove.py $i
+done
+printf "\n"
+
+printf "randomized_get.py\n"
+for (( i=1000; i<=60000; i+=1000 ))
+do
+    python3 randomized_get.py $i
+done
+printf "\n"
+
+printf "RandomizedPut\n"
+javac RandomizedPut.java
+for (( i=1000; i<=60000; i+=1000 ))
+do
+    java RandomizedPut $i
+done
+printf "\n"
+
+javac RandomizedRemove.java
+printf "RandomizedRemove\n"
+for (( i=1000; i<=60000; i+=1000 ))
+do
+    java RandomizedRemove $i
+done
+printf "\n"
+
+javac RandomizedGet.java
+printf "RandomizedGet\n"
+for (( i=1000; i<=60000; i+=1000 ))
+do
+    java RandomizedGet $i
+done
+printf "\n"

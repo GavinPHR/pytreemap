@@ -3,33 +3,32 @@
 """
 from abc import abstractmethod
 from collections.abc import Iterator
-import pytreemap.tree_map as tm
+import pytreemap as ptm
 from pytreemap.abstract.map import Map
 from pytreemap.abstract.navigable_map import NavigableMap
 from pytreemap.abstract.abstract_map import AbstractMap
 from pytreemap.abstract.abstract_set import AbstractSet
-from pytreemap.exception import ConcurrentModificationError, IllegalStateError
 
 __author__ = 'Haoran Peng'
 __email__ = 'gavinsweden@gmail.com'
 __license__ = 'GPL-2.0'
-__version__ = '0.1'
+__version__ = '0.4'
 __status__ = 'Alpha'
 
 
-class NavigableSubMap(NavigableMap, AbstractMap):
+class NavigableSubMap(AbstractMap, NavigableMap):
 
     def __init__(self, m,
                  from_start, lo, lo_inclusive,
                  to_end, hi, hi_inclusive):
         if not from_start and not to_end:
             if m.compare(lo, hi) > 0:
-                raise ValueError('from_key > to_key')
-            else:
-                if not from_start:
-                    m.compare(lo, lo)
-                if not to_end:
-                    m.compare(hi, hi)
+                raise KeyError('from_key > to_key')
+        else:
+            if not from_start:
+                m.compare(lo, lo)
+            if not to_end:
+                m.compare(hi, hi)
         self.m = m
         self.lo, self.hi = lo, hi
         self.from_start, self.to_end = from_start, to_end
@@ -60,7 +59,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
 
     def in_closed_range(self, key):
         return ((self.from_start or self.m.compare(key, self.lo) >= 0) and
-                (self.to_end or self.m.comapre(self.hi, key) >= 0))
+                (self.to_end or self.m.compare(self.hi, key) >= 0))
 
     def abs_lowest(self):
         e = (self.m.get_first_entry() if self.from_start else
@@ -145,9 +144,9 @@ class NavigableSubMap(NavigableMap, AbstractMap):
     __reversed__ = descending_key_iterator
 
     def is_empty(self):
-        return (self.m.is_emptry()
+        return (self.m.is_empty()
                 if self.from_start and self.to_end
-                else self.entry_set().is_emptry())
+                else self.entry_set().is_empty())
 
     def size(self):
         return (self.m.size()
@@ -163,7 +162,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
 
     def put(self, key, value):
         if not self.in_range(key):
-            raise ValueError('key out of range')
+            raise KeyError('key out of range')
         return self.m.put(key, value)
 
     __setitem__ = put
@@ -171,66 +170,72 @@ class NavigableSubMap(NavigableMap, AbstractMap):
     def get(self, key):
         return None if not self.in_range(key) else self.m.get(key)
 
-    __getitem__ = get
+    def __getitem__(self, key):
+        if not self.in_range(key):
+            raise KeyError('key out of range')
+        return self.m.__getitem__(key)
 
     def remove(self, key):
         return None if not self.in_range(key) else self.m.remove(key)
 
-    __delitem__ = remove
+    def __delitem__(self, key):
+        if not self.in_range(key):
+            raise KeyError('key out of range')
+        return self.m.__delitem__(key)
 
     def ceiling_entry(self, key):
-        return tm.TreeMap.export_entry(self.sub_ceiling(key))
+        return ptm.TreeMap.export_entry(self.sub_ceiling(key))
 
     def ceiling_key(self, key):
-        return tm.TreeMap.key_or_none(self.sub_ceiling(key))
+        return ptm.TreeMap.key_or_none(self.sub_ceiling(key))
 
     def higher_entry(self, key):
-        return tm.TreeMap.export_entry(self.sub_higher(key))
+        return ptm.TreeMap.export_entry(self.sub_higher(key))
 
     def higher_key(self, key):
-        return tm.TreeMap.key_or_none(self.sub_higher(key))
+        return ptm.TreeMap.key_or_none(self.sub_higher(key))
 
     def floor_entry(self, key):
-        return tm.TreeMap.export_entry(self.sub_floor(key))
+        return ptm.TreeMap.export_entry(self.sub_floor(key))
 
     def floor_key(self, key):
-        return tm.TreeMap.key_or_none(self.sub_floor(key))
+        return ptm.TreeMap.key_or_none(self.sub_floor(key))
 
     def lower_entry(self, key):
-        return tm.TreeMap.export_entry(self.sub_lower(key))
+        return ptm.TreeMap.export_entry(self.sub_lower(key))
 
     def lower_key(self, key):
-        return tm.TreeMap.key_or_none(self.sub_lower(key))
+        return ptm.TreeMap.key_or_none(self.sub_lower(key))
 
     def first_key(self):
-        return tm.TreeMap.key(self.sub_lowest())
+        return ptm.TreeMap.key(self.sub_lowest())
 
     def last_key(self):
-        return tm.TreeMap.key(self.sub_highest())
+        return ptm.TreeMap.key(self.sub_highest())
 
     def first_entry(self):
-        return tm.TreeMap.export_entry(self.sub_lowest())
+        return ptm.TreeMap.export_entry(self.sub_lowest())
 
     def last_entry(self):
-        return tm.TreeMap.export_entry(self.sub_highest())
+        return ptm.TreeMap.export_entry(self.sub_highest())
 
     def poll_first_entry(self):
         e = self.sub_lowest()
-        result = tm.TreeMap.export_entry(e)
+        result = ptm.TreeMap.export_entry(e)
         if e is not None:
             self.m.delete_entry(e)
         return result
 
     def poll_last_entry(self):
         e = self.sub_highest()
-        result = tm.TreeMap.export_entry(e)
+        result = ptm.TreeMap.export_entry(e)
         if e is not None:
             self.m.delete_entry(e)
         return result
 
     def navigable_key_set(self):
         nksv = self.navigable_key_set_view
-        return nksv if nksv is not None else tm.TreeMap.KeySet(self)
+        return nksv if nksv is not None else ptm.TreeMap.KeySet(self)
 
     def key_set(self):
         return self.navigable_key_set()
@@ -242,20 +247,20 @@ class NavigableSubMap(NavigableMap, AbstractMap):
 
         def __init__(self, outer):
             self.outer = outer
-            self.size = -1
+            self._size = -1
             self.size_mod_count = 0
 
         def size(self):
             if self.outer.from_start and self.outer.to_end:
                 return self.outer.m.size()
-            if (self.size == -1 or
-                    self.size_mod_count != self.outer.m.mod_count):
-                self.size_mod_count = self.outer.m.mod_count
-                self.size = 0
+            if (self._size == -1 or
+                    self.size_mod_count != self.outer.m._mod_count):
+                self.size_mod_count = self.outer.m._mod_count
+                self._size = 0
                 i = iter(self)
                 for _ in i:
-                    self.size += 1
-            return self.size
+                    self._size += 1
+            return self._size
 
         __len__ = size
 
@@ -272,7 +277,7 @@ class NavigableSubMap(NavigableMap, AbstractMap):
                 return False
             node = self.outer.m.get_entry(key)
             return (node is not None and
-                    tm.TreeMap.val_equals(node.get_value(), entry.get_value()))
+                    ptm.TreeMap.val_equals(node.get_value(), entry.get_value()))
 
         __contains__ = contains
 
@@ -285,8 +290,8 @@ class NavigableSubMap(NavigableMap, AbstractMap):
                 return False
             node = self.outer.m.get_entry(key)
             if (node is not None and
-                    tm.TreeMap.val_equals(node.get_value(),
-                                          entry.get_value())):
+                    ptm.TreeMap.val_equals(node.get_value(),
+                                           entry.get_value())):
                 self.outer.m.delete_entry(node)
                 return True
             return False
@@ -295,55 +300,55 @@ class NavigableSubMap(NavigableMap, AbstractMap):
 
         def __init__(self, first, fence, outer):
             self.outer = outer
-            self.expected_mod_count = outer.m.mod_count
+            self.expected_mod_count = outer.m._mod_count
             self.last_returned = None
-            self.next = first
+            self.next_ = first
             self.fence_key = object() if fence is None else fence.key
 
         def has_next(self):
-            return (self.next is not None and
-                    self.next.key is not self.fence_key)
+            return (self.next_ is not None and
+                    self.next_.key is not self.fence_key)
 
         def next_entry(self):
-            e = self.next
+            e = self.next_
             if e is None or e.key is self.fence_key:
                 raise StopIteration
-            if self.outer.m.mod_count != self.expected_mod_count:
-                raise ConcurrentModificationError
-            self.next = tm.TreeMap.successor(e)
+            if self.outer.m._mod_count != self.expected_mod_count:
+                raise RuntimeError
+            self.next_ = ptm.TreeMap.successor(e)
             self.last_returned = e
             return e
 
         def prev_entry(self):
-            e = self.next
+            e = self.next_
             if e is None or e.key is self.fence_key:
                 raise StopIteration
-            if self.outer.m.mod_count != self.expected_mod_count:
-                raise ConcurrentModificationError
-            self.next = tm.TreeMap.predecessor(e)
+            if self.outer.m._mod_count != self.expected_mod_count:
+                raise RuntimeError
+            self.next_ = ptm.TreeMap.predecessor(e)
             self.last_returned = e
             return e
 
         def remove_ascending(self):
             if self.last_returned is None:
-                raise IllegalStateError
-            if self.outer.m.mod_count != self.expected_mod_count:
-                raise ConcurrentModificationError
+                raise RuntimeError
+            if self.outer.m._mod_count != self.expected_mod_count:
+                raise RuntimeError
             if (self.last_returned.left is not None and
                     self.last_returned.right is not None):
-                self.next = self.last_returned
+                self.next_ = self.last_returned
             self.outer.m.delete_entry(self.last_returned)
             self.last_returned = None
-            self.expected_mod_count = self.outer.m.mod_count
+            self.expected_mod_count = self.outer.m._mod_count
 
         def remove_descending(self):
             if self.last_returned is None:
-                raise IllegalStateError
-            if self.outer.m.mod_count != self.expected_mod_count:
-                raise ConcurrentModificationError
+                raise RuntimeError
+            if self.outer.m._mod_count != self.expected_mod_count:
+                raise RuntimeError
             self.outer.m.delete_entry(self.last_returned)
             self.last_returned = None
-            self.expected_mod_count = self.outer.m.mod_count
+            self.expected_mod_count = self.outer.m._mod_count
 
     class SubMapEntryIterator(SubMapIterator):
 
