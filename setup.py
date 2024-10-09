@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
   name='pytreemap',
   packages=setuptools.find_packages(),
-  version='0.5.1',
+  version='0.6',
   license='gpl-2.0',
   description='Python Implementation of Java TreeMap/TreeSet',
   author_email='gavinsweden@gmail.com',
