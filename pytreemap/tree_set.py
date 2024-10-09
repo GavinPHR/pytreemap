@@ -61,14 +61,14 @@ class TreeSet(AbstractSet, NavigableSet):
 
     def sub_set(self, from_element, to_element,
                 from_inclusive=True, to_inclusive=False):
-        return TreeSet(self.m.sub_map(from_element, to_element,
+        return TreeSet(m=self.m.sub_map(from_element, to_element,
                                       from_inclusive, to_inclusive))
 
     def head_set(self, to_element, inclusive=False):
-        return TreeSet(self.m.head_map(to_element, inclusive))
+        return TreeSet(m=self.m.head_map(to_element, inclusive))
 
     def tail_set(self, from_element, inclusive=True):
-        return TreeSet(self.m.tail_map(from_element, inclusive))
+        return TreeSet(m=self.m.tail_map(from_element, inclusive))
 
     def comparator(self):
         return self.m.comparator()
